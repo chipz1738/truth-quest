@@ -66,6 +66,12 @@ button:focus-visible,input:focus-visible{outline:4px solid #fff;outline-offset:2
 .opt b{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--ink);display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:400;font-size:15px;text-shadow:0 1px 0 rgba(0,0,0,.4)}
 .opt.x{opacity:.38;text-decoration:line-through}.opt.ok{background:#dcfbe9;border-color:#1c9e5d}
 #qbSpeak{position:absolute;right:-8px;top:-8px;width:38px;height:38px;font-size:18px}
+#qbToggle{position:absolute;left:-8px;top:-8px;width:34px;height:34px;font-size:14px}
+#qbanner.min{background:rgba(255,255,255,.86);box-sizing:border-box;width:min(560px,calc(100% - 150px));padding:3px 30px 4px;box-shadow:0 3px 0 var(--ink);border-radius:14px}
+#qbanner.min #qbOpts,#qbanner.min .qb-head,#qbanner.min #qbHint:not(.learn){display:none}#qbanner.min #qbHint.learn{font-size:13px;padding:2px 8px;margin-top:3px;line-height:1.15}
+#qbanner.min #qbText{font-size:15px;line-height:1.1}
+#qbanner.min #qbSpeak{width:30px;height:30px;font-size:14px}
+#qbanner.min #qbToggle{width:30px;height:30px}
 #prompt{position:absolute;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);max-width:92%}
 #prompt .k{background:var(--ink);color:#fff;border-radius:8px;padding:0 8px;font-size:16px;font-family:var(--body);font-weight:900}
 #quest{position:absolute;left:0;top:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:0;font-family:var(--display);color:#fff;text-shadow:0 2px 0 var(--ink);-webkit-text-stroke:1px var(--ink);paint-order:stroke fill;will-change:transform}
@@ -90,9 +96,9 @@ body:not(.mode-run):not(.mode-adv) .only-run,body.mode-run .only-hub,body.mode-a
 #jumpBtn{position:absolute;right:max(22px,env(safe-area-inset-right,0px));bottom:calc(26px + env(safe-area-inset-bottom,0px));width:88px;height:88px;border-radius:50%;border:4px solid var(--ink);background:var(--sun);font-family:var(--display);font-size:20px;box-shadow:0 6px 0 var(--ink);display:none;pointer-events:auto;touch-action:none}
 #jumpBtn.down{transform:translateY(4px);box-shadow:0 2px 0 var(--ink);filter:brightness(1.1)}
 body.touch #jumpBtn{display:block}
-body.touch #qbanner{top:68px;bottom:auto}
-body.mode-adv.touch #qbanner{top:auto;bottom:10px;left:10px;transform:none;width:min(600px,calc(100% - 150px))}
-body.mode-adv #hud #qbanner{pointer-events:none}body.mode-adv #hud #qbSpeak{pointer-events:auto}
+body.touch #qbanner{top:var(--hudTop,68px);bottom:auto}
+body.mode-adv #qbanner{top:var(--hudTop,64px);bottom:auto}body.mode-adv #qbOpts{grid-template-columns:repeat(3,1fr)}body.mode-adv #qbToggle,body.gateq #advbar{display:none}
+body.mode-adv #hud #qbanner,body.touch #hud #qbanner{pointer-events:none}body.mode-adv #hud #qbSpeak,body.touch #hud #qbSpeak,body.touch #hud #qbToggle,body.mode-adv #hud #qbToggle{pointer-events:auto}
 body.mode-run:not(.touch) #toasts{bottom:auto;top:70px}
 body.touch #prompt{bottom:calc(128px + env(safe-area-inset-bottom,0px))}
 body.touch #pcard #pName{max-width:90px}
@@ -236,7 +242,7 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
 
 
 /* ---------- Bible Adventures ---------- */
-#advbar{position:absolute;left:50%;top:64px;transform:translateX(-50%);width:min(520px,calc(100% - 20px));background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:0 4px 0 var(--ink);padding:6px 12px 8px;pointer-events:none;z-index:11}
+#advbar{position:absolute;left:50%;top:var(--hudTop,64px);transform:translateX(-50%);width:min(520px,calc(100% - 20px));background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:0 4px 0 var(--ink);padding:6px 12px 8px;pointer-events:none;z-index:11}
 #advbar .adv-top{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:17px}
 #advbar .adv-top b{font-weight:400;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #advObj{font-size:14px;font-weight:800;color:var(--muted);line-height:1.2;margin:2px 0 5px}
@@ -277,7 +283,6 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
   #topRight .pill{font-size:17px;padding:2px 9px 2px 6px}
   .rbtn{width:40px;height:40px;font-size:19px}
   #qbOpts{grid-template-columns:1fr}
-  #advbar{top:62px}
   body.touch #toasts{bottom:calc(150px + env(safe-area-inset-bottom,0px))}
   .closet{grid-template-columns:1fr}.preview{height:210px}
   .panel-body{padding:12px}
@@ -286,11 +291,22 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
 @media (max-height:520px){
   .logo{font-size:38px;flex-wrap:nowrap}.logo .gap{display:none}.logo span{padding:0 7px 3px;box-shadow:0 4px 0 var(--ink)}.feat,.tcard>.tag:last-child{display:none}.tcard{gap:8px}.pgrid{max-height:150px}.pcardx{width:112px}.pcardx.new{min-height:0}
   .panel-head{padding:6px 10px 6px 14px}.panel-body{padding:10px 14px}.panel-foot{padding:8px 12px}
-  body.touch #qbanner{top:62px}#qbanner{padding:5px 10px 6px}#qbText{font-size:17px}#qbHint{display:none}.opt{font-size:12px;padding:3px 6px}.opt b{width:20px;height:20px;font-size:12px}#qbOpts{gap:4px;margin-top:5px}
-  .btn.big{font-size:22px;padding:9px 24px}
+  #qbanner{padding:5px 10px 6px}#qbText{font-size:17px}#qbHint:not(.learn){display:none}#qbHint.learn{font-size:13px;padding:2px 8px}.opt{font-size:12px;padding:3px 6px}.opt b{width:20px;height:20px;font-size:12px}#qbOpts{gap:4px;margin-top:5px}
+  .btn{font-size:17px;padding:6px 16px;box-shadow:0 4px 0 var(--ink)}.btn.big{font-size:20px;padding:7px 20px;box-shadow:0 5px 0 var(--ink)}.btn.small{font-size:14px;padding:4px 11px}
+  body.mode-adv .qb-head{display:none}body.mode-adv #qbText{font-size:16px}body.mode-adv #qbanner{padding:5px 10px 6px}#pLv{width:34px;height:34px;font-size:17px;border-radius:10px}#pcard{padding:4px 10px 4px 4px}#pName{font-size:15px}.bar{height:9px}
+  .panel-head{font-size:20px;padding:4px 8px 4px 14px}.panel-head .rbtn{width:32px!important;height:32px!important;font-size:15px!important}.pz-help{font-size:12px;margin:2px 0 4px!important}.built .ph{font-size:14px}
+  .reveal{display:flex;align-items:center;justify-content:center;gap:14px;text-align:left}.reveal .rtxt{min-width:0}.reveal .rtxt h3{margin:2px 0 4px!important}.reveal .rtxt>div{margin-bottom:2px!important;font-size:14px!important}
+  body.touch #toasts{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  #topRight{max-width:calc(100% - 186px);gap:6px}
+  .panel-foot{gap:8px}#daily{display:none}#prompt{font-size:19px;padding:8px 18px}
+  .egg{width:76px;height:96px;margin:0 auto 8px;box-shadow:0 4px 0 var(--ink)}.reveal img{width:96px;height:96px}.reveal h3{font-size:22px!important}
+  .sentence{font-size:18px;line-height:1.85;margin:6px 0}.chips{gap:7px;margin:8px 0 2px}.chip{font-size:16px;padding:5px 11px;box-shadow:0 3px 0 var(--ink)}.built{min-height:38px;padding:6px}.big-a{font-size:18px;padding:8px 12px;margin-top:8px}.tut .em{font-size:44px}
   .preview{height:180px}
   .fopts{gap:5px}.fopt{padding:5px 10px;font-size:14px}.fopt i{width:24px;height:24px}.big-q{font-size:20px}.story-art{height:96px}.story-art .big{font-size:42px}.narr{font-size:16px}
-  #advbar{top:56px;padding:4px 10px 5px}#advObj{font-size:12px;margin:1px 0 3px}
+  #advbar{padding:4px 10px 5px}#advObj{font-size:12px;margin:1px 0 3px}
+}
+@media (max-width:520px){
+  .rbtn{width:36px;height:36px;font-size:17px}#topRight{gap:5px;max-width:calc(100% - 190px)}#topRight .pill{font-size:15px;padding:1px 8px 1px 5px}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
@@ -319,6 +335,7 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
       <div id="qbHint"></div>
       <div id="qbOpts"></div>
       <button id="qbSpeak" class="rbtn" title="Read aloud" aria-label="Read the question aloud">🔊</button>
+      <button id="qbToggle" class="rbtn" title="Show or hide the answer list" aria-label="Show or hide the answer list">👁</button>
     </div>
     <div id="advbar" hidden><div class="adv-top"><b id="advTitle"></b><span id="advHearts"></span><span id="advCount"></span></div><div id="advObj"></div><div class="bar"><i id="advFill"></i></div></div>
     <button id="prompt" class="btn green" hidden></button>
@@ -2052,7 +2069,7 @@ function buildObby(sec,nums,opts={}){
         const px=total/2-padW/2-k*(padW+PGAP),pz=zPad0+padD/2,color=PAD_COLORS[k];
         const m=block(padW,1.4,padD,color,px,-.7,pz,g),s=addSolid(W,m,{pad:{st,k}});m.userData.dynamic=true;
         const letter=flatLetter(PAD_LETTERS[k],color,padW*.62);letter.position.set(px,.04,pz);g.add(letter);
-        const sign=answerSign(PAD_LETTERS[k],ch.t,color,padW-.3,5.4);sign.position.set(px,.35+2.7,zPad0+padD-.6);g.add(sign);
+        const sign=answerSign(PAD_LETTERS[k],ch.t,color,padW-.3,7.2);sign.position.set(px,.35+3.6,zPad0+padD-.6);g.add(sign);
         st.pads.push({m,s,letter,sign,px,pz,k,state:"idle",t:0,ok:ch.ok,text:ch.t});
       });
     }else{
@@ -2171,6 +2188,7 @@ function confirmBox(title,text,okLabel,onOk){
 }
 
 UI.refreshHUD=function(){
+  setTimeout(fitHudTop,0);
   $("pLv").textContent=S.lv;$("pName").textContent=S.name||"Builder";
   $("pXp").style.width=Math.min(100,S.xp/xpNeed(S.lv)*100)+"%";
   $("coins").textContent=S.coins;$("streak").textContent=S.streak;
@@ -2207,7 +2225,7 @@ function showTitle(onPlay){
         begin(id);
       };
       input.addEventListener("keydown",e=>{if(e.key==="Enter")go()});
-      area.append(el("label",{class:"namebox"},"🧑",input),codeMode?code:null,err,
+      area.append(el("label",{class:"namebox"},"🧑",input),codeMode?code:"",err,
         el("button",{class:"btn green big",onclick:go},codeMode?"▶  LOAD & PLAY":"▶  PLAY"),
         el("div",{class:"row",style:"justify-content:center;gap:8px"},
           el("button",{class:"btn small white",onclick:()=>{codeMode=!codeMode;draw()}},codeMode?"I’m new here":"I have a save code"),
@@ -2325,7 +2343,7 @@ function openPuzzle(st,onDone){
       chips.append(btn);
     });
     meter.textContent="0 of "+blanks.length+" filled";
-    body.append(el("div",{class:"muted",style:"margin-top:6px"},"Tap the right word for each blank, in order."),sent,chips,meter);
+    body.append(el("div",{class:"muted pz-help",style:"margin-top:6px"},"Tap the right word for each blank, in order."),sent,chips,meter);
   }else{
     const od=buildOrder(q.n);let pos=0;
     const built=el("div",{class:"built"},el("span",{class:"ph"},"Tap the pieces in the right order…"));
@@ -2346,7 +2364,7 @@ function openPuzzle(st,onDone){
       tiles.append(btn);
     });
     meter.textContent="0 of "+od.tiles.length+" placed";
-    body.append(el("div",{class:"muted",style:"margin:6px 0 10px"},"Build the answer, one piece at a time."),built,tiles,meter);
+    body.append(el("div",{class:"muted pz-help",style:"margin:6px 0 10px"},"Build the answer, one piece at a time."),built,tiles,meter);
   }
   openPanel({title:plan.mode==="cloze"?"Fill in the blanks":"Build the answer",icon:"🧩",color:"var(--violet)",cls:"wide",body,
     foot:[el("button",{class:"btn white small",onclick:()=>speak(q.q)},"🔊 Read question"),el("button",{class:"btn white small",onclick:()=>closePanel()},"Leave puzzle")]});
@@ -2418,14 +2436,15 @@ function openArk(){
       const r=RARITY[pet.r];
       stage.innerHTML="";
       stage.append(el("div",{class:"reveal"},el("img",{src:petThumb(pet.id),alt:pet.name}),
-        el("div",{},el("span",{class:"rar",style:"background:"+r.color},r.name)),
+        el("div",{class:"rtxt"},el("div",{},el("span",{class:"rar",style:"background:"+r.color},r.name)),
         el("h3",{style:"font-size:30px;margin-top:6px"},(dup?"":"NEW! ")+pet.name),
         el("div",{style:"font-size:16px;max-width:420px;margin:0 auto 8px"},pet.fact),
-        el("div",{class:"muted"},dup?"You already had this one: +40 🪙":"Added to your team! +"+Math.round(r.bonus*100)+"% coins")));
+        el("div",{class:"muted"},dup?"You already had this one: +40 🪙":"Added to your team! +"+Math.round(r.bonus*100)+"% coins"))));
       const got=checkBadges();got.forEach(b=>toast("🏅 Badge: "+b.name,"gold",3500));
       save(true);busy=false;
       const again=el("button",{class:"btn green",onclick:()=>render()},"Awesome! ✔");
       stage.append(el("div",{style:"margin-top:10px"},again));
+      stage.scrollIntoView({block:"start",behavior:"smooth"});
       UI.refreshHUD();
     },2150);
   };
@@ -2574,13 +2593,13 @@ const AH={
 };
 /* question banner reused for runner gates */
 function showGateQ(qn,choices){
-  const b=$("qbanner"),q=QBY[qn];b.hidden=false;$("qbNum").textContent="Faith question";$("qbCombo").textContent="";$("qbText").textContent=q.q;
+  const b=$("qbanner"),q=QBY[qn];clearTimeout(G.qbT);b.classList.remove("min");document.body.classList.add("gateq");b.hidden=false;$("qbNum").textContent="Faith question";$("qbCombo").textContent="";$("qbText").textContent=q.q;
   const h=$("qbHint");h.className="";h.textContent="Run through the lane with the right answer!";
   const o=$("qbOpts");o.innerHTML="";
   choices.forEach((c,k)=>o.append(el("div",{class:"opt","data-k":k},el("b",{style:"background:"+PAD_COLORS[k]+(k===3?";color:#241f45;text-shadow:none":"")},PAD_LETTERS[k]),el("span",{},c.t))));
   placePrompt();
 }
-function hideGateQ(){$("qbanner").hidden=true;$("qbOpts").innerHTML="";placePrompt()}
+function hideGateQ(){document.body.classList.remove("gateq");clearTimeout(G.qbT);$("qbanner").classList.remove("min");$("qbanner").hidden=true;$("qbOpts").innerHTML="";placePrompt()}
 
 /* ---- faith question: a pop-up multiple choice that powers the story ---- */
 function askFaith(qn,cb,opts={}){
@@ -2991,7 +3010,7 @@ function rhDraw(adv){
   const rh=adv.rh,cv=$("rhythm"),w=appEl.clientWidth,h=appEl.clientHeight;
   if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}
   const x=cv.getContext("2d");x.clearRect(0,0,w,h);
-  const cx=w/2,cy=h*.8,R=Math.max(36,Math.min(w,h)*.085),ph=((rh.now/rh.beat)%1+1)%1,pulse=Math.max(0,1-ph*3.2);
+  const cx=w/2,R=Math.max(36,Math.min(w,h)*.085),cy=Math.min(h*.8,h-R*2.2),ph=((rh.now/rh.beat)%1+1)%1,pulse=Math.max(0,1-ph*3.2);
   x.fillStyle="rgba(255,255,255,"+(.14+pulse*.18)+")";x.beginPath();x.arc(cx,cy,R*(1.06+pulse*.2),0,7);x.fill();
   x.lineWidth=8;x.strokeStyle="#fff";x.beginPath();x.arc(cx,cy,R,0,7);x.stroke();
   x.lineWidth=3;x.strokeStyle="rgba(36,31,69,.7)";x.beginPath();x.arc(cx,cy,R+5,0,7);x.stroke();
@@ -3004,7 +3023,7 @@ function rhDraw(adv){
   }
   x.textAlign="center";x.font="900 "+Math.round(R*.5)+"px "+CFONT;x.lineJoin="round";
   for(const pp of rh.pops){x.globalAlpha=1-pp.age/.8;x.lineWidth=7;x.strokeStyle="#241f45";x.strokeText(pp.t,cx,cy-R*1.6-pp.age*46);x.fillStyle=pp.c;x.fillText(pp.t,cx,cy-R*1.6-pp.age*46);x.globalAlpha=1}
-  if(rh.combo>=3){x.font="900 "+Math.round(R*.42)+"px "+CFONT;x.lineWidth=6;x.strokeStyle="#241f45";x.strokeText("Combo x"+rh.combo,cx,cy+R*1.9);x.fillStyle="#fff";x.fillText("Combo x"+rh.combo,cx,cy+R*1.9)}
+  if(rh.combo>=3){x.font="900 "+Math.round(R*.42)+"px "+CFONT;x.lineWidth=6;x.strokeStyle="#241f45";x.strokeText("Combo x"+rh.combo,cx,cy+R*1.75);x.fillStyle="#fff";x.fillText("Combo x"+rh.combo,cx,cy+R*1.75)}
   if(rh.now<rh.A*.8){x.font="900 "+Math.round(R*.4)+"px "+CFONT;x.lineWidth=6;x.strokeStyle="#241f45";const t="Tap when the ring fills the circle!";x.strokeText(t,cx,cy-R*2.6);x.fillStyle="#fff";x.fillText(t,cx,cy-R*2.6)}
 }
 
@@ -3345,7 +3364,14 @@ Adv.K.gather={
    ============================================================ */
 const G={mode:"title",W:null,run:null,t:0,last:0,avatar:null,tag:null,shadow:null,pets:[],frozen:false,near:null,nearKey:"",camCustom:null,camDone:false};
 
-function setMode(m){G.mode=m;["title","hub","run","adv"].forEach(x=>document.body.classList.toggle("mode-"+x,x===m))}
+/* banners that sit under the top bar (question banner, adventure bar) follow its real height, which varies with screen width */
+function fitHudTop(){
+  const a=$("topRight").getBoundingClientRect(),b=$("pcard").getBoundingClientRect(),root=$("app").getBoundingClientRect();
+  if(a.height<2)return;
+  $("hud").style.setProperty("--hudTop",Math.ceil(Math.max(a.bottom,b.bottom)-root.top+5)+"px");
+}
+window.addEventListener("resize",()=>setTimeout(fitHudTop,60));window.addEventListener("orientationchange",()=>setTimeout(fitHudTop,300));
+function setMode(m){G.mode=m;["title","hub","run","adv"].forEach(x=>document.body.classList.toggle("mode-"+x,x===m));fitHudTop()}
 function withFade(fn){
   G.frozen=true;const f=$("fade");f.classList.add("on");
   setTimeout(()=>{try{fn()}catch(e){console.error(e)}finally{requestAnimationFrame(()=>{f.classList.remove("on");G.frozen=false})}},270);
@@ -3400,6 +3426,7 @@ function bindHUD(){
   $("prompt").onclick=()=>{if(G.near&&!UI.isOpen())doInteract(G.near)};
   $("btnLeave").onclick=()=>confirmBox("Leave this run?","Your answers so far are saved.","Leave",()=>enterHub());
   $("qbSpeak").onclick=()=>{Snd.init();const st=G.run&&G.run.active;if(st)speak(st.q.q)};
+  $("qbToggle").onclick=()=>{if($("qbanner").classList.contains("min")){qbMin(false);qbAutoMin(7000)}else{clearTimeout(G.qbT);qbMin(true)}};
   $("btnAdv").onclick=()=>{Snd.init();openAdventures()};
   $("daily").onclick=()=>toast("Answer 10 questions today to win coins and a free egg! 🥚","gold");
 }
@@ -3489,10 +3516,16 @@ function openPuzzleFor(st){
 }
 
 /* ---------- answers & rewards ---------- */
+/* on phones / short screens the question banner shrinks to a one-line strip so it never hides the pads */
+function qbMin(on){$("qbanner").classList.toggle("min",!!on);placePrompt()}
+function qbAutoMin(ms){clearTimeout(G.qbT);if(qbSmall())G.qbT=setTimeout(()=>qbMin(true),ms)}
+function qbShow(ms){qbMin(false);qbAutoMin(ms)}
+function qbSmall(){return Input.touch||innerHeight<520}
 function setActive(st){
   const r=G.run;if(r.active===st)return;r.active=st;
   const b=$("qbanner");
-  if(!st){b.hidden=true;placePrompt();return}
+  if(!st){clearTimeout(G.qbT);qbMin(false);b.hidden=true;placePrompt();return}
+  qbShow(5500);
   b.hidden=false;$("qbNum").textContent="Question "+(st.i+1)+" of "+r.total;$("qbText").textContent=st.q.q;
   const h=$("qbHint");h.className="";h.textContent=st.plan.mode==="mc"?"🦘 Jump onto the pad with the right answer!":"🧩 Walk to the glowing totem and solve the puzzle!";
   $("qbCombo").textContent=r.combo>1?"🔥 Combo x"+r.combo:"";
@@ -3514,7 +3547,7 @@ function answerWrong(st,silent){
     w.miss++;if(w.lv>0)w.lv--;r.combo=0;r.misses++;r.missed.push(st.n);
   }
   if(!silent){popText("Not quite!","bad");Snd.sfx("bad")}
-  const h=$("qbHint");h.className="learn";h.textContent="✅ The answer: "+st.q.a;$("qbCombo").textContent="";
+  const h=$("qbHint");h.className="learn";h.textContent="✅ The answer: "+st.q.a;$("qbCombo").textContent="";clearTimeout(G.qbT);if(qbSmall())qbMin(true);
   if(S.set.voice)speak("The answer is: "+st.q.a);
   save();
 }
@@ -3533,7 +3566,7 @@ function answerRight(st){
   toast("+"+coins+" 🪙   +"+xp+" XP","good",1800);
   Snd.sfx("good");G.avatar.cheer=1.2;Part.confetti(P.x,P.y,P.z,first?60:30);
   $("qbCombo").textContent=r.combo>1?"🔥 Combo x"+r.combo:"";
-  {const h=$("qbHint");h.className="learn";h.textContent="✅ "+st.q.a}
+  {const h=$("qbHint");h.className="learn";h.textContent="✅ "+st.q.a;clearTimeout(G.qbT);if(qbSmall())qbMin(true)}
   if(ups)setTimeout(()=>levelUpFx(ups),900);
   dailyCheck();
   checkBadges().forEach((b,i)=>setTimeout(()=>{toast("🏅 Badge unlocked: "+b.name,"gold",3600);Snd.sfx("level")},1300+i*400));
@@ -3617,6 +3650,9 @@ function runLogic(){
   for(const st of r.stages){if(!st.cleared){if(P.z>st.zNear0-12)active=st;break}}
   setActive(active);
   if(active&&P.ground===active.near){
+    /* once the child is standing at the pads, get the banner out of the way */
+    if(!active.nearAt)active.nearAt=performance.now();
+    else if(!active.minDone&&performance.now()-active.nearAt>1500&&!active.missed){active.minDone=true;if(qbSmall())qbMin(true)}
     if(!active.learnShown&&active.plan.learn){active.learnShown=true;openLearn(active)}
     else if(active.totem&&!active.puzzleOpened&&Math.hypot(P.x-active.totem.x,P.z-active.totem.z)<11){active.puzzleOpened=true;openPuzzleFor(active)}
   }
@@ -3662,7 +3698,7 @@ function update(dt){
     G.avatar.animate(dt,0,true,0);G.avatar.root.position.set(P.x,P.y,P.z);G.avatar.root.rotation.y=P.face;
     G.shadow.position.set(P.x,.05,P.z);if(G.tag)G.tag.visible=false;Part.update(dt);$("quest").hidden=true;return;
   }
-  if(G.tag)G.tag.visible=true;
+  if(G.tag)G.tag.visible=G.mode=="hub"; /* the floating name hides the answer signs in runs */
   const paused=UI.isOpen()||G.frozen;
   if(G.mode==="adv"){
     Adv.update(dt,paused);
