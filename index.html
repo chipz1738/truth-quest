@@ -1852,27 +1852,30 @@ function gradTex(color){return canvasTex(128,128,(x,w,h)=>{const g=x.createRadia
 /* ============================================================
    HUB
    ============================================================ */
-const HUB={R:84,ringR:56};
+const HUB={R:116,ringR:88};
+/* building spots: angle (degrees clockwise from north) and distance from the Tower, placed in the gaps between the 12 portal paths.
+   Wide buildings sit due north / east / west so their collision boxes stay tight and never reach a portal. */
+const hubSpot=(deg,r)=>[Math.sin(deg*Math.PI/180)*r,-Math.cos(deg*Math.PI/180)*r];
 function recommendedSection(){
   for(const s of SECTIONS){const st=secStats(s.id);if(st.learned/st.n<.7)return s.id}
   return SECTIONS.map(s=>[s.id,secStats(s.id).pct]).sort((a,b)=>a[1]-b[1])[0][0];
 }
 function buildHub(){
   const W=newWorld("meadow"),g=W.group,R=HUB.R;
-  W.spawn={x:0,y:.05,z:40,yaw:Math.PI};
+  W.spawn={x:0,y:.05,z:66,yaw:Math.PI};
   /* floating island */
   const grassTex=canvasTex(64,64,(x,w,h)=>{x.fillStyle="#79da63";x.fillRect(0,0,w,h);x.fillStyle="#6ccd58";x.fillRect(0,0,32,32);x.fillRect(32,32,32,32)});
   grassTex.repeat.set(R*2/8,R*2/8);grassTex.offset.set(.5,.5);
   const isl=new THREE.Mesh(new THREE.CylinderGeometry(R,R-5,5,56),[new THREE.MeshLambertMaterial({color:"#a8764b"}),new THREE.MeshLambertMaterial({map:grassTex}),new THREE.MeshLambertMaterial({color:"#8a5d3a"})]);
   isl.position.y=-2.5;g.add(isl);
-  const under=new THREE.Mesh(new THREE.ConeGeometry(R-5,46,32),new THREE.MeshLambertMaterial({color:"#8f6a48"}));under.rotation.x=Math.PI;under.position.y=-28;g.add(under);
+  const under=new THREE.Mesh(new THREE.ConeGeometry(R-5,60,32),new THREE.MeshLambertMaterial({color:"#8f6a48"}));under.rotation.x=Math.PI;under.position.y=-35;g.add(under);
   W.solids.push({kind:"cyl",cx:0,cz:0,r:R,y0:-5,y1:0,on:true});
   /* paths */
   const pathMat=new THREE.MeshLambertMaterial({color:"#f2e4b8",polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
   const ring=new THREE.Mesh(new THREE.RingGeometry(HUB.ringR-4,HUB.ringR+4,72),pathMat);ring.rotation.x=-Math.PI/2;ring.position.y=.05;g.add(ring);
   const spoke=(x,z,len,wid,yaw)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(wid,len),pathMat);m.rotation.x=-Math.PI/2;m.rotation.z=-yaw;m.position.set(x,.06,z);g.add(m)};
-  spoke(0,20,40,9,0);                                 // spawn → tower
-  const obstacles=[[0,0,16],[0,40,10]];
+  spoke(0,38,76,9,0);                                 // spawn → tower
+  const obstacles=[[0,0,16],[0,66,10]];
   /* the Tower of Truth (mixed review) */
   const tw=new THREE.Group();g.add(tw);
   [[17,8,0],[14,8,1],[11,8,2],[8,8,3]].forEach(([w,h,i],k)=>{const c=SECTIONS[(k*3)%12].color,b=block(w,h,w,c,0,k*8+4,0,tw);if(k<2)addSolid(W,b)});
@@ -1904,7 +1907,7 @@ function buildHub(){
   /* Ark Nursery (pets) */
   const placeBuilding=(x,z)=>{const gp=new THREE.Group();gp.position.set(x,0,z);gp.rotation.y=Math.atan2(-x,-z);g.add(gp);return gp};
   {
-    const[x,z]=[-34,14],a=placeBuilding(x,z);
+    const[x,z]=hubSpot(270,62),a=placeBuilding(x,z);
     const hull=block(22,4,11,"#8d5a3b",0,2,0,a);block(26,1.4,13,"#6d4c41",0,.7,0,a);
     const cab=block(14,6,9,"#c8946a",0,7,0,a);block(16,1.2,11,"#6d4c41",0,10.6,0,a);block(8,2,6,"#8d5a3b",0,11.8,0,a);
     pbox(3,4,.3,"#4e342e",0,2.2,5.1,a);for(const sx of[-4,4])pbox(2.2,2.2,.3,"#b3e5fc",sx,7.4,4.6,a);
@@ -1917,7 +1920,7 @@ function buildHub(){
     W.interacts.push({x:x+dir.x*12,z:z+dir.z*12,r:7,icon:"🥚",label:"Ark Nursery",key:"ark"});obstacles.push([x,z,16]);
   }
   {
-    const[x,z]=[34,14],a=placeBuilding(x,z);
+    const[x,z]=hubSpot(120,60),a=placeBuilding(x,z);
     block(16,9,11,"#f06292",0,4.5,0,a);block(18,1.6,13,"#ad1457",0,9.8,0,a);pbox(4,6,.3,"#6a1b4d",0,3,5.6,a);
     for(const sx of[-5.5,5.5])pbox(3.4,3.4,.3,"#fff3e0",sx,5,5.6,a);
     const mk=buildAvatar(S.wear);mk.root.scale.setScalar(.55);mk.root.position.set(-5.5,3.2,5.0);mk.root.userData.keep=1;a.add(mk.root);
@@ -1928,17 +1931,17 @@ function buildHub(){
     W.interacts.push({x:x+dir.x*11,z:z+dir.z*11,r:7,icon:"👕",label:"Dress-Up Shop",key:"closet"});obstacles.push([x,z,14]);
   }
   {
-    const[x,z]=[0,-28],a=placeBuilding(x,z);
+    const[x,z]=hubSpot(90,62),a=placeBuilding(x,z);
     block(22,11,12,"#7e57c2",0,5.5,0,a);block(25,1.6,14,"#4527a0",0,11.8,0,a);
     for(const sx of[-8,-3,3,8])pbox(1.6,9,1.6,"#ede7f6",sx,4.6,6.4,a);
     pbox(4.6,6.5,.3,"#311b92",0,3.3,6.1,a);pbox(26,.9,3,"#d1c4e9",0,.45,8,a);
     W.solids.push(rotBox(x,z,a.rotation.y,25,14,0,13));
     const l=labelSprite("📖 Library",3.4,{size:56,color:"#fff",stroke:"#2c1a73"});l.position.set(0,16.5,4);a.add(l);
-    W.interacts.push({x:x,z:z+13,r:7,icon:"📖",label:"Library",key:"library"});obstacles.push([x,z,16]);
+    {const dir=new THREE.Vector3(-x,0,-z).normalize();W.interacts.push({x:x+dir.x*13,z:z+dir.z*13,r:7,icon:"📖",label:"Library",key:"library"})}obstacles.push([x,z,16]);
   }
   /* Bible Adventures hall + storyteller */
   {
-    const[x,z]=[40,-30],a=placeBuilding(x,z);
+    const[x,z]=hubSpot(0,68),a=placeBuilding(x,z);
     block(28,9,18,"#ff7043",0,4.5,0,a);
     [["#ffca28",30,2,20,9.8],["#ab47bc",24,2,16,11.8],["#29b6f6",18,2,12,13.8],["#66bb6a",12,2,8,15.8]].forEach(([c,w,h,d,y])=>block(w,h,d,c,0,y,0,a));
     pbox(1,8,1,"#eceff1",0,20.5,0,a);pbox(5,3,.4,"#ff5a8a",2.6,22.5,0,a);
@@ -1956,34 +1959,34 @@ function buildHub(){
   }
   /* daily chest */
   {
-    const c=new THREE.Group();c.position.set(0,0,22);g.add(c);
+    const c=new THREE.Group();c.position.set(0,0,36);g.add(c);
     block(4,2.4,3,"#8d5a3b",0,1.2,0,c);const lid=block(4.2,1.2,3.2,"#a9744f",0,3,0,c);lid.userData.dynamic=true;block(.8,1,.3,"#ffd54f",0,2.4,1.6,c);
     const glow=labelSprite(dailyChestReady()?"🎁 Free daily gift!":"🎁 Daily Gift",2.4,{size:48,color:"#fff",stroke:"#7a4a00"});glow.position.set(0,7,0);c.add(glow);
     if(dailyChestReady())W.anim.push((dt,t)=>{lid.rotation.x=Math.sin(t*5)*.08;glow.position.y=7+Math.sin(t*3)*.4});
-    W.solids.push(solidBox(-2,2,0,3.6,20.5,23.5));
-    W.interacts.push({x:0,z:25.5,r:6,icon:"🎁",label:"Daily Gift",key:"chest"});obstacles.push([0,22,6]);
+    W.solids.push(solidBox(-2,2,0,3.6,34.5,37.5));
+    W.interacts.push({x:0,z:39.5,r:6,icon:"🎁",label:"Daily Gift",key:"chest"});obstacles.push([0,36,6]);
   }
   /* guide */
   {
     const gv=buildAvatar({skin:"#e0ac69",face:"grin",shirt:"#43a047",pants:"#37474f",hat:"shepherd",held:"staff",off:"",chest:"",belt:"",boots:""});
-    gv.root.userData.dynamic=true;gv.root.position.set(10,0,31);gv.root.rotation.y=Math.atan2(-10,9);g.add(gv.root);
-    const l=labelSprite("Guide Gabe",2.2,{size:46,color:"#fff",stroke:"#1b5e20"});l.position.set(10,8.2,31);g.add(l);
+    gv.root.userData.dynamic=true;gv.root.position.set(14,0,48);gv.root.rotation.y=Math.atan2(-14,12);g.add(gv.root);
+    const l=labelSprite("Guide Gabe",2.2,{size:46,color:"#fff",stroke:"#1b5e20"});l.position.set(14,8.2,48);g.add(l);
     let wv=2;W.anim.push((dt)=>{wv-=dt;if(wv<0){gv.wave=1.4;wv=rand(4,8)}gv.animate(dt,0,true,0)});
-    W.interacts.push({x:10,z:29,r:6,icon:"💬",label:"Talk to Gabe",key:"guide"});obstacles.push([10,31,4]);
-    W.solids.push(solidBox(8.8,11.2,0,6,29.8,32.2));
+    W.interacts.push({x:14,z:46,r:6,icon:"💬",label:"Talk to Gabe",key:"guide"});obstacles.push([14,48,4]);
+    W.solids.push(solidBox(12.8,15.2,0,6,46.8,49.2));
   }
   /* trees, flowers, clouds, islets */
   const free=(x,z)=>{if(Math.hypot(x,z)>R-7)return false;if(Math.abs(Math.hypot(x,z)-HUB.ringR)<7)return false;for(const[ox,oz,r]of obstacles)if(Math.hypot(x-ox,z-oz)<r)return false;
     for(let i=0;i<12;i++){const th=(i*30+15)*Math.PI/180,sx=Math.sin(th),sz=-Math.cos(th),d=Math.abs(x*sz-z*sx),along=x*sx+z*sz;if(along>10&&along<HUB.ringR&&d<6)return false}
-    if(Math.abs(x)<7&&z>0&&z<44)return false;return true};
-  let placed=0,guard=0;while(placed<46&&guard++<800){const a=Math.random()*6.283,r=rand(14,R-6),x=Math.cos(a)*r,z=Math.sin(a)*r;if(!free(x,z))continue;addTree(g,x,0,z,rand(.8,1.4),pick(["#4caf50","#43a047","#58b947"]),pick(["#66bb6a","#7ccf6c"]));W.solids.push(solidBox(x-.8,x+.8,0,3.4,z-.8,z+.8));placed++}
-  placed=0;guard=0;while(placed<48&&guard++<900){const a=Math.random()*6.283,r=rand(10,R-4),x=Math.cos(a)*r,z=Math.sin(a)*r;if(!free(x,z))continue;pbox(.45,.9,.45,pick(["#ff5d73","#ffd43b","#ffffff","#cc5de8","#4dabf7"]),x,.45,z,g);pbox(.7,.7,.7,pick(["#ffd43b","#ff922b"]),x,1.05,z,g);placed++}
-  for(let i=0;i<6;i++){const a=i*1.047+.3,r=R+rand(30,60),x=Math.cos(a)*r,z=Math.sin(a)*r,y=rand(-12,10),s=rand(10,18);
+    if(Math.abs(x)<7&&z>0&&z<78)return false;return true};
+  let placed=0,guard=0;while(placed<84&&guard++<1600){const a=Math.random()*6.283,r=rand(14,R-6),x=Math.cos(a)*r,z=Math.sin(a)*r;if(!free(x,z))continue;addTree(g,x,0,z,rand(.8,1.4),pick(["#4caf50","#43a047","#58b947"]),pick(["#66bb6a","#7ccf6c"]));W.solids.push(solidBox(x-.8,x+.8,0,3.4,z-.8,z+.8));placed++}
+  placed=0;guard=0;while(placed<90&&guard++<1800){const a=Math.random()*6.283,r=rand(10,R-4),x=Math.cos(a)*r,z=Math.sin(a)*r;if(!free(x,z))continue;pbox(.45,.9,.45,pick(["#ff5d73","#ffd43b","#ffffff","#cc5de8","#4dabf7"]),x,.45,z,g);pbox(.7,.7,.7,pick(["#ffd43b","#ff922b"]),x,1.05,z,g);placed++}
+  for(let i=0;i<6;i++){const a=i*1.047+.3,r=R+rand(34,66),x=Math.cos(a)*r,z=Math.sin(a)*r,y=rand(-12,10),s=rand(10,18);
     const is=new THREE.Group();block(s,4,s,"#79da63",0,-2,0,is);const un=new THREE.Mesh(new THREE.ConeGeometry(s*.55,s*.8,10),lam("#8f6a48"));un.rotation.x=Math.PI;un.position.y=-s*.4-3;is.add(un);addTree(is,0,0,0,1);is.position.set(x,y,z);g.add(is)}
-  addClouds(W,16,240,26,90,1.3);
+  addClouds(W,22,320,26,90,1.3);
   /* coins */
-  for(let i=0;i<46;i++){const a=Math.random()*6.283,r=rand(12,R-8),x=Math.cos(a)*r,z=Math.sin(a)*r;if(Math.hypot(x,z)<14)continue;addCoin(W,x,2.8,z)}
-  for(let i=0;i<12;i++){const th=(i*30+15)*Math.PI/180;for(let k=1;k<=3;k++){const r=18+k*10;addCoin(W,Math.sin(th)*r,2.8,-Math.cos(th)*r)}}
+  for(let i=0;i<84;i++){const a=Math.random()*6.283,r=rand(12,R-8),x=Math.cos(a)*r,z=Math.sin(a)*r;if(Math.hypot(x,z)<14)continue;addCoin(W,x,2.8,z)}
+  for(let i=0;i<12;i++){const th=(i*30+15)*Math.PI/180;for(let k=1;k<=3;k++){const r=24+k*14;addCoin(W,Math.sin(th)*r,2.8,-Math.cos(th)*r)}}
   coinAnim(W);batchWorld(g);
   return W;
 }
@@ -4105,7 +4108,7 @@ function update(dt){
   if(UI.tick)UI.tick(dt);
   W.update(dt,G.t);
   if(G.mode==="title"){
-    Cam.yaw+=dt*.06;Cam.pitch=.3;Cam.dist=78;Cam.tx=0;Cam.ty=10;Cam.tz=-8;camPlace();
+    Cam.yaw+=dt*.06;Cam.pitch=.3;Cam.dist=112;Cam.tx=0;Cam.ty=10;Cam.tz=-8;camPlace();
     G.avatar.animate(dt,0,true,0);G.avatar.root.position.set(P.x,P.y,P.z);G.avatar.root.rotation.y=P.face;
     G.shadow.position.set(P.x,.05,P.z);if(G.tag)G.tag.visible=false;Part.update(dt);$("quest").hidden=true;return;
   }
