@@ -54,7 +54,7 @@ button:focus-visible,input:focus-visible{outline:4px solid #fff;outline-offset:2
 #daily b{font-family:var(--display);font-weight:400;font-size:14px;display:block;margin-bottom:4px}
 #daily .bar>i{background:linear-gradient(#5be39a,var(--grass))}
 #topRight{position:absolute;right:10px;top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:60%}
-#qbanner{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(720px,calc(100% - 20px));background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:0 5px 0 var(--ink);padding:8px 14px 10px;text-align:center}
+#qbanner{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(680px,calc(100% - 20px));background:rgba(255,255,255,.95);border:3px solid var(--ink);border-radius:18px;box-shadow:0 5px 0 var(--ink);padding:6px 44px 8px;text-align:center}
 #qbanner .qb-head{display:flex;justify-content:center;gap:10px;align-items:center;font-family:var(--display);font-size:15px;color:var(--muted);margin-bottom:2px}
 #qbanner .qb-chip{background:var(--violet);color:#fff;border-radius:99px;padding:1px 12px;border:2px solid var(--ink)}
 #qbText{font-size:clamp(17px,2.4vw,26px);font-weight:900;line-height:1.15}
@@ -66,12 +66,6 @@ button:focus-visible,input:focus-visible{outline:4px solid #fff;outline-offset:2
 .opt b{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--ink);display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:400;font-size:15px;text-shadow:0 1px 0 rgba(0,0,0,.4)}
 .opt.x{opacity:.38;text-decoration:line-through}.opt.ok{background:#dcfbe9;border-color:#1c9e5d}
 #qbSpeak{position:absolute;right:-8px;top:-8px;width:38px;height:38px;font-size:18px}
-#qbToggle{position:absolute;left:-8px;top:-8px;width:34px;height:34px;font-size:14px}
-#qbanner.min{background:rgba(255,255,255,.86);box-sizing:border-box;width:min(560px,calc(100% - 150px));padding:3px 30px 4px;box-shadow:0 3px 0 var(--ink);border-radius:14px}
-#qbanner.min #qbOpts,#qbanner.min .qb-head,#qbanner.min #qbHint:not(.learn){display:none}#qbanner.min #qbHint.learn{font-size:13px;padding:2px 8px;margin-top:3px;line-height:1.15}
-#qbanner.min #qbText{font-size:15px;line-height:1.1}
-#qbanner.min #qbSpeak{width:30px;height:30px;font-size:14px}
-#qbanner.min #qbToggle{width:30px;height:30px}
 #prompt{position:absolute;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);max-width:92%}
 #prompt .k{background:var(--ink);color:#fff;border-radius:8px;padding:0 8px;font-size:16px;font-family:var(--body);font-weight:900}
 #quest{position:absolute;left:0;top:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:0;font-family:var(--display);color:#fff;text-shadow:0 2px 0 var(--ink);-webkit-text-stroke:1px var(--ink);paint-order:stroke fill;will-change:transform}
@@ -97,8 +91,8 @@ body:not(.mode-run):not(.mode-adv) .only-run,body.mode-run .only-hub,body.mode-a
 #jumpBtn.down{transform:translateY(4px);box-shadow:0 2px 0 var(--ink);filter:brightness(1.1)}
 body.touch #jumpBtn{display:block}
 body.touch #qbanner{top:var(--hudTop,68px);bottom:auto}
-body.mode-adv #qbanner{top:var(--hudTop,64px);bottom:auto}body.mode-adv #qbOpts{grid-template-columns:repeat(3,1fr)}body.mode-adv #qbToggle,body.gateq #advbar{display:none}
-body.mode-adv #hud #qbanner,body.touch #hud #qbanner{pointer-events:none}body.mode-adv #hud #qbSpeak,body.touch #hud #qbSpeak,body.touch #hud #qbToggle,body.mode-adv #hud #qbToggle{pointer-events:auto}
+body.mode-adv #qbanner{top:var(--hudTop,64px);bottom:auto}body.mode-adv #qbOpts{grid-template-columns:repeat(3,1fr)}body.mode-adv #qbanner{width:min(720px,calc(100% - 20px))}body.gateq #advbar{display:none}
+body.mode-adv #hud #qbanner,body.touch #hud #qbanner{pointer-events:none}body.mode-adv #hud #qbSpeak,body.touch #hud #qbSpeak{pointer-events:auto}
 body.mode-run:not(.touch) #toasts{bottom:auto;top:70px}
 body.touch #prompt{bottom:calc(128px + env(safe-area-inset-bottom,0px))}
 body.touch #pcard #pName{max-width:90px}
@@ -291,13 +285,17 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
 @media (max-height:520px){
   .logo{font-size:38px;flex-wrap:nowrap}.logo .gap{display:none}.logo span{padding:0 7px 3px;box-shadow:0 4px 0 var(--ink)}.feat,.tcard>.tag:last-child{display:none}.tcard{gap:8px}.pgrid{max-height:150px}.pcardx{width:112px}.pcardx.new{min-height:0}
   .panel-head{padding:6px 10px 6px 14px}.panel-body{padding:10px 14px}.panel-foot{padding:8px 12px}
-  #qbanner{padding:5px 10px 6px}#qbText{font-size:17px}#qbHint:not(.learn){display:none}#qbHint.learn{font-size:13px;padding:2px 8px}.opt{font-size:12px;padding:3px 6px}.opt b{width:20px;height:20px;font-size:12px}#qbOpts{gap:4px;margin-top:5px}
+  #qbanner{padding:5px 10px 6px}#qbText{font-size:17px}#qbHint:not(.learn){display:none}#qbHint.learn{font-size:13px;padding:2px 8px;margin-top:3px;line-height:1.15}
+  body:not(.mode-adv) #qbanner{box-sizing:border-box;width:min(560px,calc(100% - 150px));padding:3px 34px 4px;box-shadow:0 3px 0 var(--ink);border-radius:14px;background:rgba(255,255,255,.88)}body:not(.mode-adv) #qbanner .qb-head{display:none}body:not(.mode-adv) #qbText{font-size:15px;line-height:1.1}body:not(.mode-adv) #qbSpeak{width:30px;height:30px;font-size:14px}.opt{font-size:12px;padding:3px 6px}.opt b{width:20px;height:20px;font-size:12px}#qbOpts{gap:4px;margin-top:5px}
   .btn{font-size:17px;padding:6px 16px;box-shadow:0 4px 0 var(--ink)}.btn.big{font-size:20px;padding:7px 20px;box-shadow:0 5px 0 var(--ink)}.btn.small{font-size:14px;padding:4px 11px}
-  body.mode-adv .qb-head{display:none}body.mode-adv #qbText{font-size:16px}body.mode-adv #qbanner{padding:5px 10px 6px}#pLv{width:34px;height:34px;font-size:17px;border-radius:10px}#pcard{padding:4px 10px 4px 4px}#pName{font-size:15px}.bar{height:9px}
+  body.mode-adv #qbanner .qb-head{display:none}body.mode-adv #qbText{font-size:16px}body.mode-adv #qbanner{padding:5px 10px 6px}#pLv{width:34px;height:34px;font-size:17px;border-radius:10px}#pcard{padding:4px 10px 4px 4px}#pName{font-size:15px}.bar{height:9px}
   .panel-head{font-size:20px;padding:4px 8px 4px 14px}.panel-head .rbtn{width:32px!important;height:32px!important;font-size:15px!important}.pz-help{font-size:12px;margin:2px 0 4px!important}.built .ph{font-size:14px}
   .reveal{display:flex;align-items:center;justify-content:center;gap:14px;text-align:left}.reveal .rtxt{min-width:0}.reveal .rtxt h3{margin:2px 0 4px!important}.reveal .rtxt>div{margin-bottom:2px!important;font-size:14px!important}
   body.touch #toasts{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
   #topRight{max-width:calc(100% - 186px);gap:6px}
+  body.arena #advObj{display:none}body.arena #advbar{padding:3px 10px 5px;top:8px;left:10px;transform:none;width:min(430px,calc(100% - 330px))}
+  body.arena #pcard,body.arena #topRight .pill{display:none}body.arena #topRight{max-width:none}
+  body.arena #toasts{top:64px;bottom:auto;left:auto;right:10px;transform:none;width:min(300px,42%);align-items:flex-end}
   .panel-foot{gap:8px}#daily{display:none}#prompt{font-size:19px;padding:8px 18px}
   .egg{width:76px;height:96px;margin:0 auto 8px;box-shadow:0 4px 0 var(--ink)}.reveal img{width:96px;height:96px}.reveal h3{font-size:22px!important}
   .sentence{font-size:18px;line-height:1.85;margin:6px 0}.chips{gap:7px;margin:8px 0 2px}.chip{font-size:16px;padding:5px 11px;box-shadow:0 3px 0 var(--ink)}.built{min-height:38px;padding:6px}.big-a{font-size:18px;padding:8px 12px;margin-top:8px}.tut .em{font-size:44px}
@@ -335,7 +333,6 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
       <div id="qbHint"></div>
       <div id="qbOpts"></div>
       <button id="qbSpeak" class="rbtn" title="Read aloud" aria-label="Read the question aloud">🔊</button>
-      <button id="qbToggle" class="rbtn" title="Show or hide the answer list" aria-label="Show or hide the answer list">👁</button>
     </div>
     <div id="advbar" hidden><div class="adv-top"><b id="advTitle"></b><span id="advHearts"></span><span id="advCount"></span></div><div id="advObj"></div><div class="bar"><i id="advFill"></i></div></div>
     <button id="prompt" class="btn green" hidden></button>
@@ -358,18 +355,18 @@ textarea.code{width:100%;box-sizing:border-box;height:70px;font:12px/1.2 monospa
    pets, closet items, badges and loading-screen verses
    ============================================================ */
 const SECTIONS=[
-{id:1,name:"Our Relationship to God",from:1,to:5,color:"#29b6f6",icon:"🌎",theme:"meadow",goal:"God made you and takes care of you.",verse:["Psalm 100:3","Know ye that the LORD he is God: it is he that hath made us, and not we ourselves; we are his people, and the sheep of his pasture."]},
-{id:2,name:"Who Is God?",from:6,to:15,color:"#ab47bc",icon:"☁️",theme:"cloud",goal:"One God in three persons, who sees and knows all.",verse:["Deuteronomy 6:4","Hear, O Israel: The LORD our God is one LORD:"]},
-{id:3,name:"Mankind",from:16,to:21,color:"#66bb6a",icon:"🌳",theme:"garden",goal:"Adam, Eve, and the souls God gave us.",verse:["Genesis 1:27","So God created man in his own image, in the image of God created he him; male and female created he them."]},
-{id:4,name:"The Covenant of Works",from:22,to:27,color:"#ffa726",icon:"📜",theme:"eden",goal:"God’s agreement with Adam.",verse:["Genesis 2:17","But of the tree of the knowledge of good and evil, thou shalt not eat of it: for in the day that thou eatest thereof thou shalt surely die."]},
-{id:5,name:"Of Sin",from:28,to:37,color:"#ef5350",icon:"⛈️",theme:"storm",goal:"What sin is, and why we need a Savior.",verse:["Romans 3:23","For all have sinned, and come short of the glory of God;"]},
-{id:6,name:"The Covenant of Grace",from:38,to:54,color:"#ffca28",icon:"🌅",theme:"dawn",goal:"God’s promise to save sinners through Jesus.",verse:["Romans 5:19","For as by one man’s disobedience many were made sinners, so by the obedience of one shall many be made righteous."]},
-{id:7,name:"Of Salvation",from:55,to:63,color:"#26c6da",icon:"🛟",theme:"rapids",goal:"Repent, believe, and trust in Christ alone.",verse:["Acts 16:31","Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house."]},
-{id:8,name:"The Offices of Christ",from:64,to:71,color:"#7e57c2",icon:"🏰",theme:"castle",goal:"Jesus is our Prophet, Priest, and King.",verse:["Hebrews 4:14","Seeing then that we have a great high priest, that is passed into the heavens, Jesus the Son of God, let us hold fast our profession."]},
-{id:9,name:"The 10 Commandments",from:72,to:104,color:"#ff7043",icon:"⛰️",theme:"sinai",goal:"Love God, and love your neighbor.",verse:["John 14:15","If ye love me, keep my commandments."]},
-{id:10,name:"The Lord’s Prayer",from:105,to:121,color:"#ec407a",icon:"🙏",theme:"dusk",goal:"How Jesus taught us to pray.",verse:["Matthew 6:9","After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name."]},
-{id:11,name:"The Sacraments",from:122,to:136,color:"#42a5f5",icon:"💧",theme:"river",goal:"Baptism and the Lord’s Supper.",verse:["Matthew 28:19","Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost:"]},
-{id:12,name:"Of Last Things",from:137,to:145,color:"#ffe082",icon:"✨",theme:"heaven",goal:"Christ will come again, and heaven is waiting.",verse:["Revelation 21:4","And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away."]}
+{id:1,name:"Our Relationship to God",from:1,to:5,color:"#29b6f6",icon:"🌎",theme:"meadow",goal:"God made you and takes care of you.",verse:["Psalm 100:3","Know that Yahweh, He is God; It is He who has made us, and not we ourselves; We are His people and the sheep of His pasture."]},
+{id:2,name:"Who Is God?",from:6,to:15,color:"#ab47bc",icon:"☁️",theme:"cloud",goal:"One God in three persons, who sees and knows all.",verse:["Deuteronomy 6:4","Hear, O Israel! Yahweh is our God, Yahweh is one!"]},
+{id:3,name:"Mankind",from:16,to:21,color:"#66bb6a",icon:"🌳",theme:"garden",goal:"Adam, Eve, and the souls God gave us.",verse:["Genesis 1:27","God created man in His own image, in the image of God He created him; male and female He created them."]},
+{id:4,name:"The Covenant of Works",from:22,to:27,color:"#ffa726",icon:"📜",theme:"eden",goal:"God’s agreement with Adam.",verse:["Genesis 2:17","but from the tree of the knowledge of good and evil you shall not eat, for in the day that you eat from it you will surely die."]},
+{id:5,name:"Of Sin",from:28,to:37,color:"#ef5350",icon:"⛈️",theme:"storm",goal:"What sin is, and why we need a Savior.",verse:["Romans 3:23","for all have sinned and fall short of the glory of God,"]},
+{id:6,name:"The Covenant of Grace",from:38,to:54,color:"#ffca28",icon:"🌅",theme:"dawn",goal:"God’s promise to save sinners through Jesus.",verse:["Romans 5:19","For as through the one man’s disobedience the many were appointed sinners, even so through the obedience of the One the many will be appointed righteous."]},
+{id:7,name:"Of Salvation",from:55,to:63,color:"#26c6da",icon:"🛟",theme:"rapids",goal:"Repent, believe, and trust in Christ alone.",verse:["Acts 16:31","Believe in the Lord Jesus, and you will be saved, you and your house."]},
+{id:8,name:"The Offices of Christ",from:64,to:71,color:"#7e57c2",icon:"🏰",theme:"castle",goal:"Jesus is our Prophet, Priest, and King.",verse:["Hebrews 4:14","Therefore, since we have a great high priest who has passed through the heavens, Jesus the Son of God, let us hold fast our confession."]},
+{id:9,name:"The 10 Commandments",from:72,to:104,color:"#ff7043",icon:"⛰️",theme:"sinai",goal:"Love God, and love your neighbor.",verse:["John 14:15","If you love Me, you will keep My commandments."]},
+{id:10,name:"The Lord’s Prayer",from:105,to:121,color:"#ec407a",icon:"🙏",theme:"dusk",goal:"How Jesus taught us to pray.",verse:["Matthew 6:9","Our Father who is in heaven, Hallowed be Your name."]},
+{id:11,name:"The Sacraments",from:122,to:136,color:"#42a5f5",icon:"💧",theme:"river",goal:"Baptism and the Lord’s Supper.",verse:["Matthew 28:19","Go therefore and make disciples of all the nations, baptizing them in the name of the Father and the Son and the Holy Spirit,"]},
+{id:12,name:"Of Last Things",from:137,to:145,color:"#ffe082",icon:"✨",theme:"heaven",goal:"Christ will come again, and heaven is waiting.",verse:["Revelation 21:4","and He will wipe away every tear from their eyes; and there will no longer be any death; there will no longer be any mourning, or crying, or pain;"]}
 ];
 
 const THEMES={
@@ -692,16 +689,16 @@ const PETS=[
 {id:"fish",name:"Fish",r:0,icon:"🐟",fact:"Jesus called fishermen to follow him. (Matthew 4:19)"},
 {id:"frog",name:"Frog",r:0,icon:"🐸",fact:"Frogs covered Egypt when Pharaoh would not let God’s people go. (Exodus 8)"},
 {id:"bee",name:"Bee",r:0,icon:"🐝",fact:"God promised his people a land flowing with milk and honey. (Exodus 3:8)"},
-{id:"lamb",name:"Lamb",r:1,icon:"🐑",fact:"The Lord is my shepherd; I shall not want. (Psalm 23:1)"},
+{id:"lamb",name:"Lamb",r:1,icon:"🐑",fact:"“Yahweh is my shepherd, I shall not want.” (Psalm 23:1)"},
 {id:"dove",name:"Dove",r:1,icon:"🕊️",fact:"Noah sent out a dove, and it came back with an olive leaf. (Genesis 8:11)"},
 {id:"donkey",name:"Donkey",r:1,icon:"🫏",fact:"Balaam’s donkey saw the angel of the Lord, and God let it speak! (Numbers 22)"},
 {id:"raven",name:"Raven",r:1,icon:"🐦‍⬛",fact:"God sent ravens to bring Elijah bread and meat. (1 Kings 17:6)"},
 {id:"ram",name:"Ram",r:2,icon:"🐏",fact:"God gave Abraham a ram to offer in place of Isaac. (Genesis 22:13)"},
 {id:"camel",name:"Camel",r:2,icon:"🐫",fact:"Abraham’s servant took ten camels on a long trip to find a wife for Isaac. (Genesis 24)"},
 {id:"ox",name:"Ox",r:2,icon:"🐂",fact:"Oxen helped farmers plow and thresh grain in Israel. (Deuteronomy 25:4)"},
-{id:"eagle",name:"Eagle",r:2,icon:"🦅",fact:"Those who wait on the Lord will rise up with wings like eagles. (Isaiah 40:31)"},
+{id:"eagle",name:"Eagle",r:2,icon:"🦅",fact:"“Those who wait for Yahweh will gain new strength; They will mount up with wings like eagles.” (Isaiah 40:31)"},
 {id:"hen",name:"Hen",r:0,icon:"🐔",fact:"Jesus said he longed to gather his people like a hen gathers her chicks under her wings. (Matthew 23:37)"},
-{id:"gazelle",name:"Gazelle",r:1,icon:"🦌",fact:"“As the hart panteth after the water brooks, so panteth my soul after thee, O God.” (Psalm 42:1)"},
+{id:"gazelle",name:"Gazelle",r:1,icon:"🦌",fact:"“As the deer pants for the water brooks, So my soul pants for You, O God.” (Psalm 42:1)"},
 {id:"peacock",name:"Peacock",r:2,icon:"🦚",fact:"King Solomon’s ships brought gold, silver, ivory, and peacocks! (1 Kings 10:22)"},
 {id:"lion",name:"Lion",r:3,icon:"🦁",fact:"God shut the lions’ mouths to keep Daniel safe. (Daniel 6:22)"},
 {id:"whale",name:"Great Fish",r:3,icon:"🐋",fact:"God prepared a great fish to swallow Jonah, and he was rescued. (Jonah 1:17)"}
@@ -770,31 +767,31 @@ const BADGES=[
 {id:"heart3",name:"Faithful Heart",icon:"💖",desc:"Earn 3 stars on a Bible Adventure."}
 ].concat(SECTIONS.map(s=>({id:"sec"+s.id,name:s.name+" Hero",icon:s.icon,desc:"Reach level 3 on every question in “"+s.name+"”.",sec:s.id})));
 
-/* ---- Loading tips: Scripture to hide in your heart (KJV) ---- */
+/* ---- Loading tips: Scripture to hide in your heart (Legacy Standard Bible) ---- */
 const VERSES=[
-["Psalm 119:11","Thy word have I hid in mine heart, that I might not sin against thee."],
-["Proverbs 3:5","Trust in the LORD with all thine heart; and lean not unto thine own understanding."],
-["Genesis 1:1","In the beginning God created the heaven and the earth."],
-["John 3:16","For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."],
-["1 Corinthians 10:31","Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God."],
-["Ephesians 6:1","Children, obey your parents in the Lord: for this is right."],
-["Psalm 56:3","What time I am afraid, I will trust in thee."],
-["Joshua 1:9","Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest."],
-["Psalm 23:1","The LORD is my shepherd; I shall not want."],
-["Psalm 46:1","God is our refuge and strength, a very present help in trouble."],
-["Romans 3:23","For all have sinned, and come short of the glory of God;"],
-["Romans 6:23","For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord."],
-["Ephesians 2:8","For by grace are ye saved through faith; and that not of yourselves: it is the gift of God:"],
-["Psalm 34:8","O taste and see that the LORD is good: blessed is the man that trusteth in him."],
-["Psalm 139:7","Whither shall I go from thy spirit? or whither shall I flee from thy presence?"],
-["1 John 4:19","We love him, because he first loved us."],
-["Psalm 19:1","The heavens declare the glory of God; and the firmament sheweth his handywork."],
-["Matthew 6:33","But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you."],
-["Hebrews 13:5","I will never leave thee, nor forsake thee."],
-["Psalm 119:105","Thy word is a lamp unto my feet, and a light unto my path."]
+["Psalm 119:11","Your word I have treasured in my heart, That I may not sin against You."],
+["Proverbs 3:5","Trust in Yahweh with all your heart And do not lean on your own understanding."],
+["Genesis 1:1","In the beginning God created the heavens and the earth."],
+["John 3:16","For God so loved the world, that He gave His only begotten Son, that whoever believes in Him shall not perish, but have eternal life."],
+["1 Corinthians 10:31","Whether, then, you eat or drink or whatever you do, do all to the glory of God."],
+["Ephesians 6:1","Children, obey your parents in the Lord, for this is right."],
+["Psalm 118:24","This is the day which Yahweh has made; Let us rejoice and be glad in it."],
+["Joshua 1:9","Have I not commanded you? Be strong and courageous! Do not be in dread or be dismayed, for Yahweh your God is with you wherever you go."],
+["Psalm 23:1","Yahweh is my shepherd, I shall not want."],
+["Psalm 46:1","God is our refuge and strength, A very present help in trouble."],
+["Romans 3:23","for all have sinned and fall short of the glory of God,"],
+["Romans 6:23","For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord."],
+["Ephesians 2:8","For by grace you have been saved through faith; and that not of yourselves, it is the gift of God;"],
+["Psalm 34:8","Taste and see that Yahweh is good; How blessed is the man who takes refuge in Him!"],
+["Psalm 139:7","Where can I go from Your Spirit? Or where can I flee from Your presence?"],
+["1 John 4:19","We love, because He first loved us."],
+["Psalm 19:1","The heavens are telling of the glory of God; And their expanse is declaring the work of His hands."],
+["Matthew 6:33","But seek first His kingdom and His righteousness, and all these things will be added to you."],
+["Hebrews 13:5","I will never desert you, nor will I ever forsake you,"],
+["Psalm 119:105","Your word is a lamp to my feet And a light to my path."]
 ];
 /* ============================================================
-   BIBLE ADVENTURES — story content (scripture quoted from the KJV)
+   BIBLE ADVENTURES — story content (scripture quoted from the Legacy Standard Bible)
    kit: sling | runner | rhythm | smash | obby | gather
    linked: catechism questions asked as “faith questions” inside the adventure
    ============================================================ */
@@ -802,22 +799,22 @@ const STORIES=[
 {id:"redsea",title:"Crossing the Red Sea",ref:"Exodus 14",icon:"🌊",color:"#2d7fe0",theme:"rapids",kit:"runner",testament:"OT",
  cfg:{scene:"redsea",len:760,speed:17,family:true,chasers:true},linked:[13,10,6],
  art:["🏜️⛺🧎‍♂️🧎‍♀️","🌊🌊🌊","🐎🛞🌊"],
- intro:["God’s people were free from Egypt, but Pharaoh changed his mind and sent his army after them! The Israelites were trapped between the chariots and the sea. Moses said, “Fear ye not, stand still, and see the salvation of the LORD.”",
+ intro:["God’s people were free from Egypt, but Pharaoh changed his mind and sent his army after them! The Israelites were trapped between the chariots and the sea. Moses said, “Do not fear! Stand by and see the salvation of Yahweh which He will accomplish for you today.”",
   "God told Moses to stretch out his staff over the sea. A strong wind blew all night and the waters split into tall walls on the right and the left. The people walked across on dry ground!",
   "Run across the sea floor! Jump the rocks, switch lanes, and gather the families so nobody is left behind. Keep ahead of the chariots!"],
- goal:"Run! Swipe or use A / D to change lanes, SPACE to jump.",gate:"A stone gate blocks the path. Run through the lane with the right answer!",
+ goal:"Run! Swipe or use A / D to change lanes, SPACE to jump. Dodge the charging chariots!",gate:"A stone gate blocks the path. Run through the lane with the right answer!",
  outro:"When the Egyptians chased them into the sea, the waters came back. God saved his people! They sang a song of praise to the LORD.",
- verse:["Exodus 14:14","The LORD shall fight for you, and ye shall hold your peace."],fact:"The Bible says about 600,000 men on foot left Egypt, plus women and children (Exodus 12:37).",reward:{}},
+ verse:["Exodus 14:14","Yahweh will fight for you while you keep silent."],fact:"The Bible says about 600,000 men on foot left Egypt, plus women and children (Exodus 12:37).",reward:{}},
 
 {id:"miriam",title:"Miriam’s Tambourine",ref:"Exodus 15",icon:"🪘",color:"#ec407a",theme:"dawn",kit:"rhythm",testament:"OT",girl:true,
  cfg:{dio:"miriam",bpm:108,goal:46},linked:[3,4,90],
  art:["🧺👶🌾","🌅🌊💃","🪘🎶🎉"],
  intro:["Miriam was Moses’ big sister. When he was a baby she watched over his little basket floating in the reeds of the Nile. God kept him safe, and years later Moses led God’s people out of Egypt.",
-  "After they crossed the Red Sea, Miriam, a prophetess, picked up a tambourine. All the women followed her, dancing and singing: “Sing ye to the LORD, for he hath triumphed gloriously!”",
+  "After they crossed the Red Sea, Miriam, a prophetess, picked up a tambourine. All the women followed her, dancing and singing: “Sing to Yahweh, for He is highly exalted!”",
   "Join Miriam’s celebration! Tap in time with the beat. The more you hit the beat, the bigger the party gets."],
  goal:"Tap, click, or press SPACE when the ring reaches the circle.",gate:"Miriam asks everyone a question about praising God.",
  outro:"The whole camp sang and danced to thank God for saving them. Praise is a good way to glorify God!",
- verse:["Exodus 15:21","And Miriam answered them, Sing ye to the LORD, for he hath triumphed gloriously;"],fact:"Miriam is the first woman in the Bible called a prophetess (Exodus 15:20).",reward:{item:"held:tambourine"}},
+ verse:["Exodus 15:21","Sing to Yahweh, for He is highly exalted; The horse and his rider He has hurled into the sea."],fact:"Miriam is the first woman in the Bible called a prophetess (Exodus 15:20).",reward:{item:"held:tambourine"}},
 
 {id:"jericho",title:"The Walls of Jericho",ref:"Joshua 6",icon:"🎺",color:"#ff9800",theme:"sinai",kit:"rhythm",testament:"OT",
  cfg:{dio:"jericho",bpm:92,goal:52},linked:[4,13,10],
@@ -827,47 +824,47 @@ const STORIES=[
   "March in step! Tap to the beat of the marching drum. Seven days of marching, then the big shout!"],
  goal:"Tap, click, or press SPACE on the beat. Fill the march meter.",gate:"The priests stop to remember something about God. Answer to keep marching!",
  outro:"At the great shout, the walls of Jericho fell down flat! God did exactly what he promised. Rahab and her family, who trusted God, were rescued.",
- verse:["Hebrews 11:30","By faith the walls of Jericho fell down, after they were compassed about seven days."],fact:"Rahab hung a scarlet cord from her window, and her whole family was saved (Joshua 6:25).",reward:{item:"held:trumpet"}},
+ verse:["Hebrews 11:30","By faith the walls of Jericho fell down after they had been encircled for seven days."],fact:"Rahab hung a scarlet cord from her window, and her whole family was saved (Joshua 6:25).",reward:{item:"held:trumpet"}},
 
-{id:"gideon",title:"Gideon’s 300",ref:"Judges 7",icon:"🔥",color:"#ff7043",theme:"dusk",kit:"rhythm",testament:"OT",
- cfg:{dio:"gideon",bpm:100,goal:52},linked:[3,4,13],
+{id:"gideon",title:"Gideon’s 300",ref:"Judges 7",icon:"🔥",color:"#ff7043",theme:"dusk",kit:"raid",testament:"OT",
+ cfg:{},linked:[3,4,13],
  art:["🏕️🌙🐫","👥🏺🔥","🎺📣🏃"],
- intro:["A huge army of Midianites camped in the valley, as many as locusts. God told Gideon, “You have too many soldiers!” He sent most of them home until only 300 were left. God wanted everyone to know the victory came from him.",
+ intro:["A huge army of Midianites camped in the valley, as many as locusts. God told Gideon that he had too many soldiers. He sent most of them home until only 300 were left. God wanted everyone to know the victory came from him.",
   "At night, Gideon’s 300 men surrounded the camp. Each man held a trumpet and a clay jar with a burning torch hidden inside.",
-  "At Gideon’s signal, smash the jars to reveal the torches and blow the trumpets! Tap on every beat."],
- goal:"Tap, click, or press SPACE on the beat to smash the jars.",gate:"Gideon checks his men’s faith with a question.",
+  "Creep around the sleeping camp in the dark! Sneak to every jar and smash it to reveal the torch, but stay out of the sentries’ lantern light."],
+ goal:"Sneak to each jar and press SMASH. Stay out of the sentries’ lantern light!",gate:"Gideon checks his men’s faith with a question.",
  outro:"The Midianites woke up confused and ran away. God won the battle with only 300 men, so that all the glory would go to him.",
- verse:["Judges 7:7","By the three hundred men that lapped will I save you, and deliver the Midianites into thine hand:"],fact:"God chose the men who lapped water from their hands, 300 out of 32,000 (Judges 7:2–7).",reward:{item:"held:torch"}},
+ verse:["Judges 7:7","I will save you with the 300 men who lapped and will give the Midianites into your hand;"],fact:"God chose the men who lapped water from their hands, 300 out of 32,000 (Judges 7:2–7).",reward:{item:"held:torch"}},
 
 {id:"samson",title:"Samson’s Strength",ref:"Judges 14–16",icon:"💪",color:"#8d6e63",theme:"sinai",kit:"smash",testament:"OT",
  cfg:{},linked:[58,40,13],
  art:["🦁💪✨","🛡️🦴💥","🏛️🙏💥"],
  intro:["Samson was set apart for God from before he was born. He never cut his hair, as a sign that he belonged to the LORD. When the Spirit of the LORD came on him, Samson was amazingly strong.",
   "When a young lion roared at him, Samson wrestled it with his bare hands. Later, when Philistine soldiers attacked him, he fought them off with the jawbone of a donkey.",
-  "Samson’s strength never came from his muscles. It came from God. Wrestle the lion, bonk the soldiers, and then pray and push the temple pillars!"],
- goal:"Tap or press SPACE fast to push! Click the soldiers to bonk them.",gate:"Samson asks God for help. What is the truth about God’s help?",
+  "Samson’s strength never came from his muscles. It came from God. Dodge the lion’s pounce and smash it, bonk the soldiers when they attack, and then pray and push the temple pillars!"],
+ goal:"Move to dodge. Press SMASH (or SPACE) to bonk enemies, then push the pillars!",gate:"Samson asks God for help. What is the truth about God’s help?",
  outro:"God answered Samson’s prayer, and the temple fell. Samson’s strength came from the LORD, not from himself.",
- verse:["Judges 16:28","O Lord GOD, remember me, I pray thee, and strengthen me, I pray thee, only this once, O God,"],fact:"Samson was a Nazirite: a person who promised to belong to God in a special way (Numbers 6).",reward:{item:"hair:nazirite"}},
+ verse:["Judges 16:28","Then Samson called to Yahweh and said, “Lord Yahweh, please remember me and please strengthen me just this time, O God,”"],fact:"Samson was a Nazirite: a person who promised to belong to God in a special way (Numbers 6).",reward:{item:"hair:nazirite"}},
 
 {id:"ruth",title:"Ruth in the Barley Field",ref:"Ruth 1–4",icon:"🌾",color:"#f9a825",theme:"eden",kit:"gather",testament:"OT",girl:true,
  cfg:{kind:"ruth"},linked:[98,77,5],
  art:["👩‍🦱👵🛤️","🌾🌾🌾","🧺🍞❤️"],
- intro:["Ruth lost her husband, and her mother-in-law Naomi was far from home. Ruth said, “Thy people shall be my people, and thy God my God.” She went with Naomi to Bethlehem.",
+ intro:["Ruth lost her husband, and her mother-in-law Naomi was far from home. Ruth said, “Your people shall be my people, and your God, my God.” She went with Naomi to Bethlehem.",
   "They were poor, so Ruth went to the barley fields to pick up the leftover grain. The field belonged to a kind man named Boaz, who saw how hard she worked and how kindly she cared for Naomi.",
   "Gather sheaves of barley for Naomi! Boaz will ask you a question while you work. Then bring the grain home."],
  goal:"Collect the golden sheaves, then bring them to Naomi’s house.",gate:"Boaz stops to chat. Answer his question!",
  outro:"God took care of Ruth and Naomi. Boaz married Ruth, and she became the great-grandmother of King David, and part of Jesus’ family line!",
- verse:["Ruth 1:16","for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:"],fact:"Ruth was from Moab, not Israel, but God welcomed her into his people (Ruth 4:13–17).",reward:{item:"held:basket"}},
+ verse:["Ruth 1:16","for where you go, I will go, and where you lodge, I will lodge. Your people shall be my people, and your God, my God."],fact:"Ruth was from Moab, not Israel, but God welcomed her into his people (Ruth 4:13–17).",reward:{item:"held:basket"}},
 
 {id:"david",title:"David and Goliath",ref:"1 Samuel 17",icon:"🪨",color:"#43a047",theme:"meadow",kit:"sling",testament:"OT",
  cfg:{},linked:[13,5,12],
  art:["⛰️⚔️⛰️","🐑🦁🐻","🪨🎯🛡️"],
- intro:["The Philistine army camped on one hill and God’s people on the other. A giant named Goliath shouted every day, “Send a man to fight me!” He was almost ten feet tall. Everyone was afraid.",
-  "David was a young shepherd. He had protected his sheep from a lion and a bear, and he knew God was with him. David said, “The battle is the LORD’s!”",
-  "David picked smooth stones from the brook and ran toward the giant with his sling. Gather the stones, then aim at Goliath’s forehead!"],
- goal:"Gather 5 stones. Then aim with the mouse or finger and release to fling!",gate:"David trusts the LORD. Answer to get God’s help with your aim!",
+ intro:["The Philistine army camped on one hill and God’s people on the other. A giant named Goliath shouted every day for someone to come out and fight him. He was almost ten feet tall. Everyone was afraid.",
+  "David was a young shepherd. He had protected his sheep from a lion and a bear, and he knew God was with him. David said, “The battle is Yahweh’s!”",
+  "David picked smooth stones from the brook and ran toward the giant with his sling. Gather the stones, then dodge Goliath’s attacks and aim for his forehead! Every head shot asks a faith question, and a right answer puts power behind the stone."],
+ goal:"Gather 5 stones. Then dodge Goliath’s attacks and tap his HEAD to sling a stone!",gate:"David trusts the LORD. Answer to get God’s help with your aim!",
  outro:"One stone, and the giant fell! David won because he trusted God, not armor or weapons. Nothing is too hard for God.",
- verse:["1 Samuel 17:47","And all this assembly shall know that the LORD saveth not with sword and spear: for the battle is the LORD’s,"],fact:"Goliath was “six cubits and a span” tall, almost 10 feet (3 meters) tall (1 Samuel 17:4).",reward:{item:"held:sling"}},
+ verse:["1 Samuel 17:47","and that all this assembly may know that Yahweh does not save by sword or by spear; for the battle is Yahweh’s and He will give you into our hands."],fact:"Goliath was “six cubits and a span” tall, almost 10 feet (3 meters) tall (1 Samuel 17:4).",reward:{item:"held:sling"}},
 
 {id:"esther",title:"Queen Esther’s Courage",ref:"Esther 4–5",icon:"👑",color:"#ab47bc",theme:"castle",kit:"runner",testament:"OT",girl:true,
  cfg:{scene:"palace",len:640,speed:15},linked:[5,77,13],
@@ -875,19 +872,19 @@ const STORIES=[
  intro:["Esther was a young Jewish woman who became queen of Persia. A wicked man named Haman made a plan to harm all her people. Her cousin Mordecai asked her to go to the king for help.",
   "But anyone who went to the king without being called could be put to death! Esther asked her people to pray and fast for three days. Then she said, “If I perish, I perish,” and walked toward the throne room.",
   "Race through the palace halls! Dodge the statues and the rails, and answer the palace gates to reach the king."],
- goal:"Swipe or use A / D to change lanes, SPACE to jump.",gate:"A palace door asks a question. Run through the right door!",
- outro:"The king held out his golden scepter, and Esther was welcomed! God used her courage to save his people. Mordecai had asked, “Who knoweth whether thou art come to the kingdom for such a time as this?”",
- verse:["Esther 4:14","and who knoweth whether thou art come to the kingdom for such a time as this?"],fact:"Jewish families still celebrate Purim every year to remember how God saved them (Esther 9).",reward:{item:"hat:queen"}},
+ goal:"Swipe or use A / D to change lanes, SPACE to jump. Watch out for the palace guards!",gate:"A palace door asks a question. Run through the right door!",
+ outro:"The king held out his golden scepter, and Esther was welcomed! God used her courage to save his people. Mordecai had asked, “Who knows whether you have not reached royalty for such a time as this?”",
+ verse:["Esther 4:14","And who knows whether you have not reached royalty for such a time as this?"],fact:"Jewish families still celebrate Purim every year to remember how God saved them (Esther 9).",reward:{item:"hat:queen"}},
 
 {id:"furnace",title:"The Fiery Furnace",ref:"Daniel 3",icon:"🔥",color:"#e53935",theme:"sinai",kit:"obby",testament:"OT",
  cfg:{hazard:"fire"},linked:[80,81,83,6],
  art:["🗿🎶🙇","🔥🔥🔥","🧍‍♂️🧍‍♂️🧍‍♂️✨"],
  intro:["King Nebuchadnezzar built a giant golden statue and commanded everyone to bow down when the music played. Three friends, Shadrach, Meshach, and Abednego, would not. “We will only worship the one true God.”",
-  "The angry king had the furnace heated seven times hotter and the three friends thrown in. But the king looked in and said, “I see four men loose, walking in the middle of the fire, and they are not hurt!”",
+  "The angry king had the furnace heated seven times hotter and the three friends thrown in. But the king looked in and said, “I see four men loose and walking about in the midst of the fire without harm!”",
   "Hop across the platforms and time your jumps past the fire! God was with them in the fire, and he is with you."],
  goal:"Run and jump! Wait for the flames to die down before you cross.",gate:"A gate asks a question about worshiping God alone.",
  outro:"They walked out without even a smell of smoke on their clothes. The king praised the God who rescues his people.",
- verse:["Daniel 3:17","If it be so, our God whom we serve is able to deliver us from the burning fiery furnace,"],fact:"Their hair was not even singed, and their clothes did not smell like smoke (Daniel 3:27).",reward:{}},
+ verse:["Daniel 3:17","If it be so, our God whom we serve is able to deliver us from the furnace of blazing fire; and He will deliver us out of your hand, O king."],fact:"Their hair was not even singed, and their clothes did not smell like smoke (Daniel 3:27).",reward:{}},
 
 {id:"daniel",title:"Daniel and the Lions",ref:"Daniel 6",icon:"🦁",color:"#fb8c00",theme:"sinai",kit:"obby",testament:"OT",
  cfg:{hazard:"den"},linked:[105,11,13,12],
@@ -896,28 +893,28 @@ const STORIES=[
   "Daniel kept praying to God, with his window wide open. So Daniel was thrown into a den of hungry lions, and a stone was rolled over the opening. The king could not sleep all night.",
   "Tiptoe across the stones of the lions’ den. God sent his angel and shut the lions’ mouths!"],
  goal:"Tiptoe across the den. The lions are sleepy!",gate:"A stone gate asks a question about God’s care.",
- outro:"In the morning the king ran to the den, and Daniel called out, “My God hath sent his angel!” King Darius ordered everyone to honor the God of Daniel.",
- verse:["Daniel 6:22","My God hath sent his angel, and hath shut the lions’ mouths, that they have not hurt me:"],fact:"Daniel was an old man by this time, probably in his eighties!",reward:{}},
+ outro:"In the morning the king ran to the den, and Daniel called out, “My God sent His angel and shut the lions’ mouths!” King Darius ordered everyone to honor the God of Daniel.",
+ verse:["Daniel 6:22","My God sent His angel and shut the lions’ mouths, and they have not harmed me,"],fact:"Daniel was an old man by this time, probably in his eighties!",reward:{}},
 
 {id:"storm",title:"Jesus Calms the Storm",ref:"Mark 4",icon:"⛈️",color:"#546e7a",theme:"storm",kit:"obby",testament:"NT",
  cfg:{hazard:"storm"},linked:[68,47,13,64],
  art:["⛵🌅🌊","⛈️🌊😨","☀️🌊😮"],
  intro:["One evening, Jesus and his disciples set out across the Sea of Galilee. Suddenly a furious storm hit. Waves crashed into the boat, and Jesus was asleep in the back!",
-  "The frightened disciples woke him: “Master, carest thou not that we perish?” Jesus stood up and spoke to the wind and the waves.",
+  "The frightened disciples woke him: “Teacher, do You not care that we are perishing?” Jesus stood up and spoke to the wind and the waves.",
   "Hop across the tossing boats and waves until the storm stops. Then listen for what Jesus says."],
- goal:"Hop across the bobbing boats. Don’t fall in the sea!",gate:"A boat asks a question about who Jesus is.",
- outro:"Jesus said, “Peace, be still!” and the wind stopped. The disciples were amazed: “What manner of man is this, that even the wind and the sea obey him?”",
- verse:["Mark 4:39","And he arose, and rebuked the wind, and said unto the sea, Peace, be still. And the wind ceased, and there was a great calm."],fact:"The Sea of Galilee is surrounded by hills, so sudden storms can rush down onto the water.",reward:{}},
+ goal:"Hop across the bobbing boats. When a yellow circle appears, move before the lightning lands!",gate:"A boat asks a question about who Jesus is.",
+ outro:"Jesus said to the sea, “Hush, be still.” and the wind stopped. The disciples were amazed: “Who then is this, that even the wind and the sea obey Him?”",
+ verse:["Mark 4:41","Who then is this, that even the wind and the sea obey Him?"],fact:"The Sea of Galilee is surrounded by hills, so sudden storms can rush down onto the water.",reward:{}},
 
 {id:"water",title:"Peter Walks on the Water",ref:"Matthew 14",icon:"🌊",color:"#29b6f6",theme:"river",kit:"obby",testament:"NT",
  cfg:{hazard:"waves"},linked:[57,68,58,13],
  art:["⛵🌙💨","🚶‍♂️🌊✨","🆘🤝🌅"],
- intro:["Late at night, the disciples’ boat was far from land, struggling against the wind. Just before dawn, Jesus came toward them, walking on the sea! “Be of good cheer; it is I; be not afraid.”",
-  "Peter called out, “Lord, if it is you, tell me to come to you on the water.” Jesus said, “Come.” Peter stepped out of the boat and walked on the water!",
+ intro:["Late at night, the disciples’ boat was far from land, struggling against the wind. Just before dawn, Jesus came toward them, walking on the sea! “Take courage, it is I; do not be afraid.”",
+  "Peter called out, “Lord, if it is You, command me to come to You on the water.” Jesus said, “Come.” Peter stepped out of the boat and walked on the water!",
   "Hop across the waves toward the shining light. Keep your eyes on Jesus. When Peter looked at the wind, he began to sink."],
  goal:"Hop across the waves toward the light!",gate:"A wave asks a question about trusting Christ.",
  outro:"When Peter began to sink, he cried, “Lord, save me!” and Jesus caught him right away. Then the wind stopped, and the disciples worshiped him.",
- verse:["Matthew 14:27","But straightway Jesus spake unto them, saying, Be of good cheer; it is I; be not afraid."],fact:"Peter was a fisherman. He had spent his whole life on this very lake!",reward:{}},
+ verse:["Matthew 14:27","But immediately Jesus spoke to them, saying, “Take courage, it is I; do not be afraid.”"],fact:"Peter was a fisherman. He had spent his whole life on this very lake!",reward:{}},
 
 {id:"paul",title:"Paul and Silas at Midnight",ref:"Acts 16",icon:"⛓️",color:"#5c6bc0",theme:"dusk",kit:"rhythm",testament:"NT",
  cfg:{dio:"prison",bpm:84,goal:44},linked:[55,57,105],
@@ -926,8 +923,8 @@ const STORIES=[
   "At midnight, instead of complaining, they were praying and singing hymns to God, and the other prisoners were listening!",
   "Sing along with Paul and Silas! Tap to the beat of their song. Something amazing is about to happen."],
  goal:"Tap, click, or press SPACE on the beat to sing.",gate:"The prisoners stop to listen. Answer a question about the good news!",
- outro:"A great earthquake shook the prison, every door flew open, and every chain fell off! The jailer asked, “What must I do to be saved?” They answered, “Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house.”",
- verse:["Acts 16:31","Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house."],fact:"The jailer washed their wounds and fed them, and his whole family was baptized that night (Acts 16:33–34).",reward:{}},
+ outro:"A great earthquake shook the prison, every door flew open, and every chain fell off! The jailer asked, “Sirs, what must I do to be saved?” They answered, “Believe in the Lord Jesus, and you will be saved, you and your house.”",
+ verse:["Acts 16:31","Believe in the Lord Jesus, and you will be saved, you and your house."],fact:"The jailer washed their wounds and fed them, and his whole family was baptized that night (Acts 16:33–34).",reward:{}},
 
 {id:"tomb",title:"The Empty Tomb",ref:"John 20",icon:"🌅",color:"#ffb300",theme:"heaven",kit:"runner",testament:"NT",girl:true,
  cfg:{scene:"garden",len:600,speed:17,dawn:true},linked:[137,89,138],
@@ -937,7 +934,7 @@ const STORIES=[
   "Run through the garden as the sun rises! Hop the rocks, and answer the gates. Something wonderful is waiting at the tomb."],
  goal:"Swipe or use A / D to change lanes, SPACE to jump.",gate:"A garden gate asks a question about that first Easter. Run through the right lane!",
  outro:"Mary stayed near the tomb, crying. Then Jesus said her name, “Mary!” and she knew his voice. He was alive! Mary was the first to tell the others, “I have seen the Lord!”",
- verse:["Luke 24:6","He is not here, but is risen:"],fact:"Christians worship on Sunday, “the Lord’s day,” because Jesus rose from the dead on that day.",reward:{item:"held:bouquet"}}
+ verse:["Luke 24:6","He is not here, but He has risen."],fact:"Christians worship on Sunday, “the Lord’s day,” because Jesus rose from the dead on that day.",reward:{item:"held:bouquet"}}
 ];
 const STORY_BY_ID={};STORIES.forEach(s=>STORY_BY_ID[s.id]=s);
 /* ============================================================
@@ -1706,7 +1703,7 @@ function camUpdate(dt){
 
 /* ---------- Input: keyboard, mouse drag, touch joystick (kits can take over taps and swipes) ---------- */
 const Input={keys:{},jumpQ:false,actQ:false,jumpHeld:false,joy:{x:0,y:0},touch:false,drag:null,joyId:null,enabled:true,
-  kit:null,tapQ:0,upQ:0,pressQ:[],swipeQ:[],ptr:{x:0,y:0,down:false,sx:0,sy:0}};
+  kit:null,tapQ:0,upQ:0,pressQ:[],swipeQ:[],fireQ:[],ptr:{x:0,y:0,down:false,sx:0,sy:0}};
 const typing=t=>t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA"||t.isContentEditable);
 window.addEventListener("keydown",e=>{
   if(typing(e.target))return;
@@ -1726,7 +1723,7 @@ function moveVec(){
   const s=Math.sin(Cam.yaw),c=Math.cos(Cam.yaw);
   return{x:f*s-r*c,z:f*c+r*s,mag:Math.min(1,m)};
 }
-function resetInputQueues(){Input.tapQ=0;Input.upQ=0;Input.pressQ.length=0;Input.swipeQ.length=0;Input.jumpQ=false}
+function resetInputQueues(){Input.tapQ=0;Input.upQ=0;Input.pressQ.length=0;Input.swipeQ.length=0;Input.fireQ.length=0;Input.jumpQ=false}
 function initInput(){
   document.addEventListener("gesturestart",e=>e.preventDefault());
   const joyEl=document.getElementById("joy"),knob=document.getElementById("joyKnob");
@@ -1736,7 +1733,10 @@ function initInput(){
     if(e.pointerType==="touch"){Input.touch=true;document.body.classList.add("touch")}
     try{canvas.setPointerCapture(e.pointerId)}catch(err){}
     Input.ptr={x:e.clientX,y:e.clientY,down:true,sx:e.clientX,sy:e.clientY};Input.tapQ++;
-    if(Input.kit)return;
+    const arena=Input.kit==="arena";
+    /* action arenas: the left side of a touch screen is the joystick, anywhere else is "fire / attack here" */
+    if(arena&&!(e.pointerType==="touch"&&e.clientX<appEl.getBoundingClientRect().left+appEl.clientWidth*.38)){Input.fireQ.push({x:e.clientX,y:e.clientY});return}
+    if(Input.kit&&!arena)return;
     const left=e.clientX<appEl.getBoundingClientRect().left+appEl.clientWidth*.45;
     if(e.pointerType==="touch"&&left&&Input.joyId===null){
       Input.joyId=e.pointerId;Input.joyO={x:e.clientX,y:e.clientY};
@@ -1750,7 +1750,7 @@ function initInput(){
       if(Math.abs(dx)>34&&Math.abs(dx)>Math.abs(dy)){Input.swipeQ.push(dx<0?"L":"R");Input.ptr.sx=e.clientX;Input.ptr.sy=e.clientY;Input.ptr.swiped=true}
       else if(dy<-44&&!Input.ptr.swiped){Input.swipeQ.push("U");Input.ptr.swiped=true}
     }
-    if(Input.kit)return;
+    if(Input.kit&&Input.kit!=="arena")return;
     if(Input.joyId===e.pointerId){
       let dx=e.clientX-Input.joyO.x,dy=e.clientY-Input.joyO.y;const R=52,m=Math.hypot(dx,dy);if(m>R){dx=dx/m*R;dy=dy/m*R}
       knob.style.transform="translate(calc(-50% + "+dx+"px),calc(-50% + "+dy+"px))";
@@ -2121,7 +2121,23 @@ function buildObby(sec,nums,opts={}){
   for(let zz=-20;zz<W.zEnd+60;zz+=45)for(const side of[-1,1])if(Math.random()<.55)decorateIslet(g,W,th.deco,side*rand(55,100),rand(-20,12),zz+rand(0,20));
   if(hz==="waves"||hz==="storm"){const sea=new THREE.Mesh(new THREE.PlaneGeometry(600,W.zEnd+400),new THREE.MeshLambertMaterial({color:hz==="storm"?"#2c4a73":"#2d86e8",transparent:true,opacity:.82}));sea.rotation.x=-Math.PI/2;sea.position.set(0,-7,W.zEnd/2);sea.userData.own=true;sea.userData.dynamic=true;g.add(sea)}
   if(hz==="waves")pbox(4,70,4,"#fff6c2",0,35,W.zEnd+14,g,.32);
-  if(hz==="storm")addRain(W);
+  if(hz==="storm"){
+    addRain(W);
+    /* lightning strikes the boats: a yellow circle fills up under you, and you have to move before the bolt lands */
+    const ad={fx:[],inv:0,kb:null};let lt=rand(3.2,4.6);
+    W.anim.push(dt=>{
+      if(G.mode!=="run"||G.W!==W||UI.isOpen()||G.frozen)return;
+      Arena.update(ad,dt);lt-=dt;
+      if(lt<=0&&P.ground&&P.y>-3){
+        lt=rand(3.8,5.6);const gy=P.y;
+        const f=Arena.ring(ad,P.x+rand(-3,3),P.z+rand(-3,3),6.4,1.5,f=>{
+          flash("white",110);Snd.sfx("rumble");Part.burst(f.x,gy+3,f.z,["#ffffff","#ffe066"],26,16,.5,18,1.1);Cam.shake=.8;
+          if(Math.hypot(P.x-f.x,P.z-f.z)<f.r+.6&&P.y<gy+3.4){toast("⚡ Zap! Move when you see the yellow circle.","bad",1800);Snd.sfx("bad");respawn()}
+        },{col:"#ffd400"});
+        f.base.position.y=f.fill.position.y=gy+.18;
+      }
+    });
+  }
   if(hz==="fire"){const gold="#ffca28";pbox(8,14,8,gold,-62,7,40,g);pbox(10,18,6,gold,-62,23,40,g);pbox(6,6,6,gold,-62,35,40,g);pbox(4,40,4,"#6d4c41",-62,-6,40,g)}
   addClouds(W,22,200,20,70,1.2,-60,W.zEnd+60);
   coinAnim(W);batchWorld(g);
@@ -2486,7 +2502,7 @@ function openCloset(){
   draw();
   openPanel({title:"Dress-Up Shop",icon:"👕",color:"var(--berry)",cls:"wide",body:el("div",{class:"closet"},prev,right),
     onClose:()=>{mr.scene.remove(av.root)},
-    foot:[el("span",{class:"muted",style:"margin-right:auto;align-self:center;font-size:13px"},"“Put on the whole armour of God.” Ephesians 6:11"),el("button",{class:"btn white",onclick:()=>closePanel()},"Done")]});
+    foot:[el("span",{class:"muted",style:"margin-right:auto;align-self:center;font-size:13px"},"“Put on the full armor of God, so that you will be able to stand firm against the schemes of the devil.” Ephesians 6:11"),el("button",{class:"btn white",onclick:()=>closePanel()},"Done")]});
 }
 
 /* ---------- Journal (every question) + badges ---------- */
@@ -2539,7 +2555,8 @@ function openSettings(){
       el("button",{class:"btn small green",onclick:()=>{if(importCode(code.value)){toast("Progress loaded!","good");closePanel();loadFromSave()}else toast("That code did not work.","bad")}},"Load code")),
     code,
     el("h3",{style:"margin-top:14px"},"Start over"),
-    el("button",{class:"btn small pink",onclick:()=>confirmBox("Erase everything?","This deletes your coins, pets and progress on this device. This cannot be undone.","Erase it",()=>{resetSave();loadFromSave();toast("Fresh start!")})},"Erase my progress"));
+    el("button",{class:"btn small pink",onclick:()=>confirmBox("Erase everything?","This deletes your coins, pets and progress on this device. This cannot be undone.","Erase it",()=>{resetSave();loadFromSave();toast("Fresh start!")})},"Erase my progress"),
+    el("div",{class:"muted",style:"font-size:12px;line-height:1.35;margin-top:16px"},"Scripture quotations are from the Legacy Standard Bible® (LSB®), Copyright © 2021 by The Lockman Foundation. Used by permission. All rights reserved. LSBible.org. The Children’s Catechism questions and answers are shown word for word."));
   openPanel({title:"Settings",icon:"⚙️",color:"#546e7a",cls:"narrow",body,foot:[el("button",{class:"btn white",onclick:()=>closePanel()},"Done")]});
 }
 
@@ -2575,8 +2592,8 @@ function claimDaily(){
    ADVENTURES — framework: map, story intro, faith questions, outro, Storybook
    ============================================================ */
 const Adv={cur:null,K:{},cp:null};
-const KIT_LABEL={sling:"Sling duel",runner:"Dash",rhythm:"Rhythm",smash:"Power",obby:"Obstacle course",gather:"Gather"};
-const KIT_BOOST={sling:"a bigger target",runner:"an extra heart",rhythm:"a wider timing window",smash:"stronger pushes",obby:"bonus coins",gather:"a wider reach"};
+const KIT_LABEL={sling:"Boss fight",runner:"Dash",rhythm:"Rhythm",smash:"Brawl",raid:"Night raid",obby:"Obstacle course",gather:"Gather"};
+const KIT_BOOST={sling:"an extra heart and a bigger target",runner:"an extra heart",rhythm:"a wider timing window",smash:"an extra heart and a stronger swing",raid:"an extra heart and a wider smash reach",obby:"bonus coins",gather:"a wider reach"};
 const boostOf=st=>Math.min(3,st.linked.filter(n=>getQ(n).lv>=2).length);
 const DUMMY_GROUND={dummy:true};
 const flashEl=()=>$("flash");
@@ -2589,17 +2606,18 @@ const AH={
   prog(p){$("advFill").style.width=Math.round(clamp(p,0,1)*100)+"%"},
   hearts(n,max){const h=$("advHearts");if(n==null){h.textContent="";return}h.textContent="❤️".repeat(Math.max(0,n))+"🖤".repeat(Math.max(0,(max||n)-n))},
   count(t){$("advCount").textContent=t},
-  hide(){$("advbar").hidden=true}
+  hide(){$("advbar").hidden=true},
+  btn(t){$("jumpBtn").textContent=t||"JUMP"}
 };
 /* question banner reused for runner gates */
 function showGateQ(qn,choices){
-  const b=$("qbanner"),q=QBY[qn];clearTimeout(G.qbT);b.classList.remove("min");document.body.classList.add("gateq");b.hidden=false;$("qbNum").textContent="Faith question";$("qbCombo").textContent="";$("qbText").textContent=q.q;
+  const b=$("qbanner"),q=QBY[qn];document.body.classList.add("gateq");b.hidden=false;$("qbNum").textContent="Faith question";$("qbCombo").textContent="";$("qbText").textContent=q.q;
   const h=$("qbHint");h.className="";h.textContent="Run through the lane with the right answer!";
   const o=$("qbOpts");o.innerHTML="";
   choices.forEach((c,k)=>o.append(el("div",{class:"opt","data-k":k},el("b",{style:"background:"+PAD_COLORS[k]+(k===3?";color:#241f45;text-shadow:none":"")},PAD_LETTERS[k]),el("span",{},c.t))));
   placePrompt();
 }
-function hideGateQ(){document.body.classList.remove("gateq");clearTimeout(G.qbT);$("qbanner").classList.remove("min");$("qbanner").hidden=true;$("qbOpts").innerHTML="";placePrompt()}
+function hideGateQ(){document.body.classList.remove("gateq");$("qbanner").hidden=true;$("qbOpts").innerHTML="";placePrompt()}
 
 /* ---- faith question: a pop-up multiple choice that powers the story ---- */
 function askFaith(qn,cb,opts={}){
@@ -2630,7 +2648,7 @@ Adv.cleanup=function(){
   const a=Adv.cur;
   if(a&&a.kit&&a.kit.cleanup)try{a.kit.cleanup(a)}catch(e){console.error(e)}
   Input.kit=null;resetInputQueues();G.camCustom=null;Cam.xs=1;Adv.cur=null;Adv.cp=null;
-  AH.hide();$("rhythm").hidden=true;$("xhair").hidden=true;hideGateQ();
+  AH.hide();AH.btn();$("rhythm").hidden=true;$("xhair").hidden=true;hideGateQ();
   if(G.avatar){G.avatar.root.scale.setScalar(1);G.avatar.root.rotation.z=0}
 };
 function enterAdventure(id){
@@ -2807,7 +2825,7 @@ Adv.K.runner={
     const cfg=story.cfg,th=THEMES[story.theme],W=newWorld(story.theme),g=W.group,LW=7,LEN=cfg.len;
     W.spawn={x:0,y:.05,z:0,yaw:0};W.killY=-60;
     const hearts=3+(adv.boost>0?1:0);
-    const rn=adv.rn={lane:0,LW,LEN,hearts,maxH:hearts,stumble:0,gap:34,obst:[],oi:0,gates:[],gi:0,fam:0,famTotal:0,fin:false,finT:0,cpz:0,sp:0,hist:[],followers:[],sc:cfg.scene,skyT:0,chariots:[],cleared:0};
+    const rn=adv.rn={lane:0,LW,LEN,hearts,maxH:hearts,stumble:0,gap:34,obst:[],oi:0,gates:[],gi:0,fam:0,famTotal:0,fin:false,finT:0,cpz:0,sp:0,hist:[],followers:[],sc:cfg.scene,skyT:0,chariots:[],cleared:0,charges:[],warn:null,chT:rand(4,6),guards:[]};
     // floor + lane lines
     block(LW*3+14,2,LEN+260,RUN_FLOOR[cfg.scene],0,-1,LEN/2+60,g);W.solids.push(solidBox(-30,30,-2,0,-60,LEN+200));
     for(const x of[-3.5,3.5])pbox(.28,.05,LEN+240,"#ffffff",x,.04,LEN/2+60,g,.55);
@@ -2846,6 +2864,10 @@ Adv.K.runner={
       else if(pat<.82)[-1,0,1].filter(l=>l!==free).forEach(l=>putOb(l,"high",z));
       else{const o=[-1,0,1].filter(l=>l!==free);putOb(o[0],"low",z);putOb(o[1],"high",z)}
       for(let k=0;k<4;k++)addCoin(W,-free*LW,3,z-9+k*3.2);
+      if(cfg.scene==="palace"&&Math.random()<.6&&gz.every(q=>Math.abs(q-(z+12))>26)){ // a palace guard patrols across the lanes
+        const gp=tinyPerson("#b3261e","#c9955c","#ffca28");gp.scale.setScalar(2.6);pbox(.2,.2,4.2,"#8d6e63",.7,1.7,1.2,gp);pbox(.3,.3,.8,"#cfd8dc",.7,1.7,3.5,gp);gp.userData.dynamic=true;gp.position.set(0,0,z+12);g.add(gp);
+        const o={x:0,z:z+12,w:3.2,d:2.6,h:7,hit:false,m:gp,per:rand(3.4,4.6),ph:Math.random()*6.28,mov:true};rn.obst.push(o);rn.guards.push(o);
+      }
     }
     for(let z=20;z<LEN;z+=64)addCoin(W,-pick([-1,0,1])*LW,3,z);
     rn.obst.sort((a,b)=>a.z-b.z);
@@ -2908,6 +2930,21 @@ Adv.K.runner={
     r.followers.forEach((p,i)=>{const on=i<r.fam;p.visible=on;if(!on)return;const j=r.hist.length-2-Math.min(Math.floor(r.hist.length/2)-1,(i+1)*5)*2;if(j<0)return;p.position.set(r.hist[j]+((i%3)-1)*1.2,Math.abs(Math.sin(adv.t*10+i))*.5*(r.sp>2?1:0),r.hist[j+1]-3-(i/3|0)*2);p.rotation.y=0});
     // chasers
     if(r.chariots.length){r.gap=clamp(r.gap+(r.stumble>0?0:dt*1.6),12,34);r.chariots.forEach((c,i)=>{c.visible=!r.fin||r.finT<1.6;c.position.set((i?7:-7)+Math.sin(adv.t*2+i)*1.2,Math.abs(Math.sin(adv.t*9+i))*.3-(r.fin?r.finT*4:0),P.z-r.gap-i*6);if(!r.fin&&Math.random()<.35)Part.burst(c.position.x,.4,c.position.z-2,"#d9b77a",1,5,.7,6,1.4)})}
+    // patrolling palace guards
+    for(const o of r.guards){if(Math.abs(o.z-P.z)>140)continue;o.x=Math.sin(adv.t*6.283/o.per+o.ph)*7.4;o.m.position.x=o.x;o.m.rotation.y=Math.cos(adv.t*6.283/o.per+o.ph)>0?Math.PI/2:-Math.PI/2;o.m.userData.legs.forEach((l,k)=>l.rotation.x=Math.sin(adv.t*10+k*3)*.6)}
+    // Egyptian chariots charge up your lane: the red strip shows where, so switch lanes!
+    if(cfg.chasers&&!r.fin){
+      const gt0=r.gates[r.gi],nearGate=gt0&&gt0.z-P.z<70&&gt0.z-P.z>-12;
+      r.chT-=dt;
+      if(r.chT<=0&&!r.warn&&!nearGate&&P.z>40&&P.z<r.LEN-90){
+        const ln=Math.random()<.75?r.lane:pick([-1,0,1]),m=pbox(LW-.8,.06,40,"#ff3b30",-ln*LW,.13,P.z+22,G.W.group,.5);m.userData.dynamic=true;
+        r.warn={lane:ln,t:0,m};Snd.sfx("pop");toast("🐎 A chariot is charging! Switch lanes!","bad",1500)}
+      if(r.warn){const w=r.warn;w.t+=dt;w.m.position.z=P.z+22;w.m.visible=Math.floor(w.t*9)%2===0||w.t>.9;
+        if(w.t>1.15){G.W.group.remove(w.m);const c=chariot();c.userData.dynamic=true;c.position.set(-w.lane*LW,0,P.z-45);G.W.group.add(c);r.charges.push({m:c,x:-w.lane*LW,z:P.z-45,hit:false});r.warn=null;r.chT=rand(5,7.5);Snd.sfx("whoosh")}}
+    }
+    for(let i=r.charges.length-1;i>=0;i--){const c=r.charges[i];c.z+=(r.sp+58)*dt;c.m.position.z=c.z;if(Math.random()<.5)Part.burst(c.x,.4,c.z-3,"#d9b77a",1,5,.6,6,1.4);
+      if(!c.hit&&Math.abs(c.z-P.z)<4.2&&Math.abs(P.x-c.x)<4.6&&P.y<5){c.hit=true;runnerHurt(adv,{});toast("Ouch! Switch lanes when the red strip shows!","bad",1500)}
+      if(c.z>P.z+34||r.fin){G.W.group.remove(c.m);r.charges.splice(i,1)}}
     // faith gates
     const gt=r.gates[r.gi];
     if(gt){
@@ -3145,175 +3182,6 @@ function dirKeys(dt,speed=520){
   if(dx||dy){Input.ptr.x=clamp(Input.ptr.x+dx*speed*dt,0,appEl.clientWidth);Input.ptr.y=clamp(Input.ptr.y+dy*speed*dt,0,appEl.clientHeight)}
 }
 
-/* ====================== SMASH: Samson ====================== */
-Adv.K.smash={
-  input:"smash",
-  build(story,adv){
-    const W=newWorld(story.theme),g=W.group;W.spawn={x:0,y:.05,z:0,yaw:0};
-    groundDisc(W,130,"#dcb980","#d2ad74");
-    for(let i=0;i<16;i++){const a=i/16*Math.PI*2,r=rand(56,80);addRock(g,Math.cos(a)*r,0,Math.sin(a)*r+20,rand(1,2.2),"#b49a85")}
-    const sm=adv.sm={step:0,meter:0,t:0,hits:0,need:8,sold:[],tm:null,walk:0,power:.075*(1+.12*adv.boost),lion:null,lionFly:0,popT:1,fall:0,pillarsGo:false};
-    const L=buildPet("lion");L.scale.setScalar(3.6);L.position.set(0,0,9);L.rotation.y=Math.PI;L.userData.dynamic=true;g.add(L);sm.lion=L;
-    for(let i=0;i<6;i++){
-      const x=-27+i*10.8,z=30+(i%2)*9;block(7,5,7,pick(["#a0522d","#b86b3b","#8d5a3b"]),x,2.5,z,g);
-      const s=tinyPerson("#7e57c2","#c9955c","#8d6e63");s.scale.setScalar(2);s.position.set(x,-6,z-5.4);s.userData.dynamic=true;s.visible=false;pbox(2.4,2.6,.3,"#b0bec5",.3,2.3,.5,s);g.add(s);
-      sm.sold.push({m:s,x,z:z-5.4,state:0,t:0,vx:0,vy:0,vz:0});
-    }
-    const bricks=[];
-    for(const px of[-7,7])for(let r=0;r<9;r++)bricks.push({x:px,y:r*2+1,z:44,sx:3.4,sy:2,sz:3.4,c:r%2?"#d9cdb4":"#cfc2a6"});
-    for(const px of[-17,17])for(let r=0;r<9;r++)bricks.push({x:px,y:r*2+1,z:50,sx:3.2,sy:2,sz:3.2,c:"#cfc2a6"});
-    for(let ix=-12;ix<=12;ix+=2.4)for(let iz=40;iz<=52;iz+=2.4)bricks.push({x:ix,y:19,z:iz,s:2.4,c:(ix+iz|0)%2?"#c8b99a":"#d6c9ac"});
-    for(let ix=-8;ix<=8;ix+=2.4)bricks.push({x:ix,y:21.4,z:46,s:2.4,c:"#bfae8c"});
-    sm.tm=brickField(W,bricks);sm.tm.im.visible=false;
-    const lb=labelSprite("Temple of Dagon",4,{size:56,color:"#fff",stroke:"#5d3a1a"});lb.position.set(0,30,46);lb.visible=false;g.add(lb);sm.tmLbl=lb;
-    batchWorld(g);return W;
-  },
-  start(adv){AH.obj("Wrestle the lion! Tap, click, or press SPACE fast!");AH.prog(0);AH.count("")},
-  update(dt,adv,paused){
-    const sm=adv.sm,W=G.W;if(paused){return}
-    adv.t+=dt;sm.t+=dt;
-    const kt=Input.jumpQ?1:0,pt=Input.tapQ;let taps=kt+pt;Input.tapQ=0;Input.jumpQ=false;Input.pressQ.length=0;Input.swipeQ.length=0;
-    P.x=0;P.y=0;P.speed=0;P.ground=DUMMY_GROUND;P.face=0;
-    const ask=(i,next)=>{sm.step=-1;askFaith(adv.story.linked[i],()=>{sm.step=next;sm.t=0;resetInputQueues()})};
-    const mash=(need,decay)=>{
-      if(taps){sm.meter+=taps*sm.power*(sm.t>10?1.5:1);G.avatar.cheer=.12;Snd.sfx("whack");Cam.shake=Math.max(Cam.shake,.35)}
-      sm.meter=clamp(sm.meter-dt*decay*(sm.t>12?.5:1),0,1.01);AH.prog(sm.meter);AH.count("💪");
-      return sm.meter>=1;
-    };
-    switch(sm.step){
-      case 0:{ // lion
-        if(sm.lionFly<=0){const done=mash(1,.3);sm.lion.position.z=9+sm.meter*9;sm.lion.position.x=Math.sin(G.t*14)*.4*(1-sm.meter);
-          if(done){sm.lionFly=.001;Snd.sfx("rumble");popText("Whoosh!");Part.burst(0,5,18,["#ffffff","#ffd54f"],40,16,.9,12,1.5);flash("white",120);sm.meter=0;AH.prog(1)}}
-        else{sm.lionFly+=dt;const t=sm.lionFly;sm.lion.position.z=18+t*40;sm.lion.position.y=Math.sin(Math.min(1,t/1.2)*Math.PI)*16;sm.lion.rotation.x=t*5;
-          if(t>1.4){sm.lion.visible=false;ask(0,1)}}
-        break}
-      case 1:{ // whack the soldiers
-        if(sm.t<.05){AH.obj("Soldiers attack! Click or tap them to bonk them away!");sm.hits=0;sm.popT=.6}
-        sm.popT-=dt;
-        if(sm.popT<=0){const free=sm.sold.filter(s=>s.state===0);if(free.length){const s=pick(free);s.state=1;s.t=0;s.m.visible=true;s.m.rotation.set(0,Math.PI,0);s.m.position.set(s.x,-6,s.z);Snd.sfx("pop")}sm.popT=Math.max(.45,1.0-sm.hits*.04)}
-        for(const s of sm.sold){
-          if(s.state===1){s.t+=dt;s.m.position.y=lerp(-6,0,clamp(s.t/.2,0,1));if(s.t>(sm.t>20?2.6:1.6)){s.state=2;s.t=0}}
-          else if(s.state===2){s.t+=dt;s.m.position.y=lerp(0,-6,clamp(s.t/.25,0,1));if(s.t>.25){s.state=0;s.m.visible=false}}
-          else if(s.state===3){s.t+=dt;s.vy-=40*dt;s.m.position.x+=s.vx*dt;s.m.position.y+=s.vy*dt;s.m.position.z+=s.vz*dt;s.m.rotation.x+=dt*9;s.m.rotation.z+=dt*6;if(s.t>1.1){s.state=0;s.m.visible=false}}
-        }
-        const bonk=hit=>{hit.state=3;hit.t=0;hit.vx=rand(-12,12);hit.vy=22;hit.vz=22;sm.hits++;popText(pick(["BONK!","POW!","BAM!"]));Snd.sfx("whack");Part.burst(hit.x,4,hit.z,["#ffd54f","#ffffff"],14,12,.5,12,1);Cam.shake=.5;G.avatar.cheer=.3};
-        for(let i=0;i<pt;i++){ // mouse / finger: bonk the soldier you point at
-          const up=sm.sold.filter(s=>s.state===1);if(!up.length)break;
-          const hits=rayFromPointer().intersectObjects(up.map(s=>s.m),true);
-          if(hits.length){let o=hits[0].object;while(o&&!up.some(s=>s.m===o))o=o.parent;const h=up.find(s=>s.m===o);if(h)bonk(h)}
-        }
-        for(let i=0;i<kt;i++){const h=sm.sold.find(s=>s.state===1);if(h)bonk(h)} // keyboard / JUMP button: bonk the first one standing
-        AH.prog(sm.hits/sm.need);AH.count("👊 "+sm.hits+"/"+sm.need);
-        if(sm.hits>=sm.need){for(const s of sm.sold){s.state=0;s.m.visible=false}ask(1,2)}
-        break}
-      case 2:{ // walk to the temple
-        sm.walk+=dt;const k=clamp(sm.walk/2.2,0,1);P.z=lerp(0,26,k);P.speed=k<1?9:0;
-        sm.tm.im.visible=true;sm.tmLbl.visible=true;AH.obj("Samson reaches the temple pillars…");
-        if(k>=1)ask(2,3);
-        break}
-      case 3:{ // pray and push
-        if(sm.t<.05){sm.meter=0;AH.obj("Push the pillars! Tap, click, or press SPACE fast!");AH.prog(0)}
-        P.z=26;
-        const done=!sm.pillarsGo&&mash(1,.36);
-        if(done){sm.pillarsGo=true;sm.fall=0;Snd.sfx("rumble");sm.tm.go(0,46,1.15);Cam.shake=2;flash("white",260);Part.burst(0,10,46,["#d9cdb4","#c8b99a","#ffffff"],110,24,1.8,10,2);popText("CRASH!")}
-        if(sm.pillarsGo){sm.fall+=dt;sm.tm.update(dt);Cam.shake=Math.max(Cam.shake,.4*(1-clamp(sm.fall/2.5,0,1)));sm.tmLbl.visible=false;G.avatar.cheer=.5;
-          if(sm.fall>3&&!adv.done){const ok=clamp(1-(sm.t>25?.4:0),0,1);Adv.complete(ok)}}
-        break}
-    }
-    Cam.shake*=Math.pow(.04,dt);
-    if(sm.step<=1)setCam(0,9,-14,0,4.5,12);else setCam(0,11,P.z-16,0,8,P.z+22);
-  }
-};
-
-/* ====================== SLING: David ====================== */
-Adv.K.sling={
-  input:null,
-  build(story,adv){
-    const W=newWorld(story.theme),g=W.group;W.spawn={x:0,y:.05,z:-30,yaw:0};
-    groundDisc(W,190,"#7ed957","#72cc4f");
-    for(const s of[-1,1])for(let i=0;i<6;i++)block(60-i*8,5,50,"#8bc34a",s*(120-i*3),i*5+2.5,40+i*2,g);
-    pbox(240,.4,12,"#4aa6ff",0,.08,-8,g,.85);
-    for(let i=0;i<10;i++)addRock(g,rand(-60,60),0,rand(-18,6),rand(.5,.9),"#9aa0ad");
-    for(let i=0;i<8;i++){block(8,5,8,pick(["#c9a97a","#d9c0a0"]),-55+i*14,2.5,-70,g)}
-    for(let i=0;i<10;i++){block(8,5,8,pick(["#7a4a3a","#8d5a3b"]),-70+i*15,2.5,172,g)}
-    const sl=adv.sl={phase:0,stones:[],got:0,ammo:5,throws:0,miss:0,assist:.6*adv.boost,fb:0,gol:null,fly:null,askN:0,fall:0,flee:[],nextAsk:[1,2],win:false,pickR:3.8+adv.boost*.4};
-    // stones by the brook
-    const sp=[[-26,-2],[-12,-10],[2,3],[16,-9],[27,1]];
-    sp.forEach(([x,z])=>{const s=new THREE.Group();pbox(1.6,1.2,1.3,"#b8bfca",0,.6,0,s);pbox(.4,.4,.4,"#ffe066",0,2.2,0,s);s.position.set(x,0,z);s.userData.dynamic=true;g.add(s);sl.stones.push({m:s,x,z,got:false})});
-    // Goliath
-    const G0=buildAvatar({skin:"#c9955c",face:"angry",shirt:"#7a5a3a",pants:"#5d4037",hat:"bronze",held:"spear",off:"shield",chest:"bronze",belt:"",boots:"peace",hair:"",hairc:"#2b2118",skirt:""});
-    G0.root.scale.setScalar(2.8);G0.root.position.set(0,0,96);G0.root.rotation.y=Math.PI;G0.root.userData.dynamic=true;g.add(G0.root);
-    const gl=labelSprite("Goliath",3.4,{size:56,color:"#fff",stroke:"#5d1a14"});gl.position.set(0,19,96);g.add(gl);
-    sl.gol={a:G0,x:0,z:96,phase:0,lbl:gl,down:false};
-    for(let i=0;i<8;i++){const p=tinyPerson("#7e57c2","#c9955c","#8d6e63");p.position.set(-40+i*11,0,150+(i%2)*6);p.scale.setScalar(1.8);p.rotation.y=Math.PI;p.userData.dynamic=true;g.add(p);sl.flee.push(p)}
-    const hint=labelSprite("🪨 Gather 5 smooth stones from the brook!",3.2,{size:50,color:"#fff",stroke:"#26233a"});hint.position.set(0,10,-12);g.add(hint);sl.hint=hint;
-    addClouds(W,14,150,24,70,1.2,-60,200);coinAnim(W);batchWorld(g);return W;
-  },
-  start(adv){AH.obj("Gather 5 smooth stones from the brook!");AH.count("🪨 0/5");Cam.dist=20},
-  cleanup(adv){$("xhair").hidden=true;G.avatar.set(S.wear)},
-  update(dt,adv,paused){
-    const sl=adv.sl,W=G.W;if(paused){return}
-    adv.t+=dt;
-    const gol=sl.gol,g=gol.a;
-    if(sl.phase===0){
-      walkStep(dt);
-      for(const s of sl.stones){if(s.got)continue;s.m.rotation.y+=dt*2;if(Math.hypot(P.x-s.x,P.z-s.z)<sl.pickR){s.got=true;s.m.visible=false;sl.got++;Snd.sfx("coin");Part.burst(s.x,2,s.z,["#ffe066","#ffffff"],10,8,.6,10,.8);AH.count("🪨 "+sl.got+"/5");if(sl.got>=5){sl.phase=1;AH.obj("David trusted the LORD…");askFaith(adv.story.linked[0],r=>{if(r.first)sl.assist+=1.2;sl.phase=2;sl.t0=adv.t;startDuel(adv)})}}}
-      g.animate(dt,0,true,0);gol.a.root.position.z=gol.z;return;
-    }
-    if(sl.phase===1){g.animate(dt,0,true,0);return}
-    // ---- duel ----
-    sl.fb=Math.max(0,sl.fb-dt);
-    P.x=0;P.y=0;P.z=52;P.face=0;P.speed=0;P.ground=DUMMY_GROUND;
-    dirKeys(dt);
-    let fire=Input.upQ>0||Input.jumpQ;Input.upQ=0;Input.jumpQ=false;Input.tapQ=0;Input.pressQ.length=0;
-    if(!gol.down){
-      gol.phase+=dt*.55;gol.x=Math.sin(gol.phase)*(9+Math.min(5,sl.miss*1.2));gol.z-=dt*(1+sl.miss*.12);
-      g.root.position.set(gol.x,0,gol.z);g.root.rotation.y=Math.PI+Math.atan2(-gol.x*.2,30)*0.2;g.animate(dt,6,true,0);gol.lbl.position.set(gol.x,19,gol.z);
-      if(gol.z<72){sl.assist=Math.max(sl.assist,6)}
-    }
-    if(fire&&!sl.fly&&sl.ammo>0&&!gol.down&&!sl.locked){
-      const r=rayFromPointer(),o=r.ray.origin,d=r.ray.direction,t=Math.max(5,(gol.z-o.z)/(d.z||.001));
-      const to=new THREE.Vector3(o.x+d.x*t,o.y+d.y*t,gol.z),from=new THREE.Vector3(P.x+.6,P.y+3.8,P.z+1.5),T=.5+to.distanceTo(from)/150;
-      const m=pbox(.9,.9,.9,"#9e9e9e",from.x,from.y,from.z,G.W.group);m.userData.dynamic=true;
-      sl.fly={m,from,to,T,t:0};sl.ammo--;sl.throws++;G.avatar.cheer=.25;Snd.sfx("sling");AH.count("🪨 "+sl.ammo);
-    }
-    if(sl.fly){
-      const f=sl.fly;f.t+=dt;const k=clamp(f.t/f.T,0,1);
-      f.m.position.set(lerp(f.from.x,f.to.x,k),lerp(f.from.y,f.to.y,k)+Math.sin(k*Math.PI)*5,lerp(f.from.z,f.to.z,k));f.m.rotation.x+=dt*14;
-      if(Math.random()<.6)Part.burst(f.m.position.x,f.m.position.y,f.m.position.z,"#ffffff",1,2,.3,0,.5);
-      if(k>=1){
-        G.W.group.remove(f.m);
-        const hy=4.75*2.8+.4,dx=f.to.x-gol.x,dy=f.to.y-hy,dist=Math.hypot(dx,dy),rad=2.3+sl.assist;
-        if(dist<=rad){
-          gol.down=true;sl.fall=0;Snd.sfx("rumble");popText("DIRECT HIT!");Cam.shake=1.4;flash("white",200);Part.confetti(gol.x,hy,gol.z,100);Part.burst(gol.x,hy,gol.z,["#c08a3e","#ffffff"],30,16,.8,16,1.2);
-        }else if(Math.abs(dx)<4.2&&f.to.y>2&&f.to.y<hy-2){popText("Clank!","bad");Snd.sfx("bad");Part.burst(f.to.x,f.to.y,f.to.z,["#cfd8dc","#ffffff"],10,10,.4,10,.8);sl.miss++;sl.assist+=.7}
-        else{popText("Missed!","bad");Snd.sfx("splash");Part.burst(f.to.x,Math.max(.4,f.to.y),f.to.z,["#bfe3ff","#ffffff"],10,8,.5,14,.8);sl.miss++;sl.assist+=.7}
-        sl.fly=null;
-        if(!gol.down){
-          if(sl.ammo<=0){sl.ammo=3;toast("The brook has more stones! 🪨","gold",2200);AH.count("🪨 3")}
-          if(sl.askN<2&&sl.miss>sl.askN){const qi=sl.askN+1;sl.askN++;sl.locked=true;askFaith(adv.story.linked[qi%adv.story.linked.length],r=>{sl.locked=false;resetInputQueues();if(r.first){sl.assist+=1.3;toast("🙏 Faith helps your aim!","good",2000)}})}
-        }
-      }
-    }
-    if(gol.down){
-      sl.fall+=dt;g.root.rotation.x=-Math.min(Math.PI/2,sl.fall*2.4);g.root.position.y=0;gol.lbl.visible=false;
-      sl.flee.forEach((p,i)=>{if(sl.fall>.6){p.position.z+=dt*(12+i);p.position.y=Math.abs(Math.sin(G.t*14+i))*.8;p.rotation.y=0}});
-      if(sl.fall>3.2&&!adv.done)Adv.complete(clamp(1-sl.miss*.14,0,1));
-    }
-    // camera + crosshair
-    setCam(0,10,38,0,8,72);
-    const xh=$("xhair");xh.style.transform="translate("+Math.round(Input.ptr.x)+"px,"+Math.round(Input.ptr.y)+"px) translate(-50%,-50%)";
-    AH.prog(gol.down?1:clamp((96-gol.z)/50,0,.9));
-  }
-};
-function startDuel(adv){
-  const sl=adv.sl;Input.kit="sling";resetInputQueues();$("xhair").hidden=false;
-  Input.ptr.x=appEl.clientWidth/2;Input.ptr.y=appEl.clientHeight*.38;sl.hint.visible=false;
-  G.camCustom=null;P.x=0;P.z=52;P.y=0;P.face=0;
-  AH.obj("Aim at Goliath’s forehead! Release to fling the stone.");AH.count("🪨 5");
-  G.avatar.set(Object.assign({},S.wear,{held:"sling"}));
-}
-
 /* ====================== GATHER: Ruth ====================== */
 Adv.K.gather={
   input:null,
@@ -3357,6 +3225,560 @@ Adv.K.gather={
         else if(gt.got>=gt.total)AH.obj("Bring the grain home to Naomi!");
       }
     }
+  }
+};
+/* ============================================================
+   ARENA TOOLKIT: shared pieces for the action adventures.
+   Hearts and knock-downs, red "watch out" warnings that fill up before
+   an attack lands, spears, falling rocks and shockwaves you jump over.
+   ============================================================ */
+const AR={circ:new THREE.CircleGeometry(1,40),plane:new THREE.PlaneGeometry(1,1),ring:new THREE.RingGeometry(.84,1,56),rock:new THREE.IcosahedronGeometry(1,0),box:new THREE.BoxGeometry(1,1,1)};
+for(const k in AR)AR[k].userData.shared=true;
+const _arRay=new THREE.Raycaster(),_arNdc=new THREE.Vector2();
+function rayAt(x,y){const w=appEl.clientWidth,h=appEl.clientHeight,r=appEl.getBoundingClientRect();_arNdc.set(((x-r.left)/w)*2-1,-((y-r.top)/h)*2+1);_arRay.setFromCamera(_arNdc,camera);return _arRay}
+
+const Arena={
+  /* begin an action fight: free movement + tap-to-aim input, hearts, no effects yet */
+  start(adv,hearts){
+    adv.fx=[];adv.hp=adv.maxHp=hearts;adv.inv=0;adv.kb=null;adv.downs=0;adv.hits=0;
+    AH.hearts(adv.hp,adv.maxHp);Input.kit="arena";resetInputQueues();Cam.yaw=0;document.body.classList.add("arena");
+  },
+  stop(){Input.kit=null;resetInputQueues();document.body.classList.remove("arena");if(G.avatar)G.avatar.root.visible=true},
+  flat(geo,col,op){
+    const m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:op,depthWrite:false}));
+    m.rotation.x=-Math.PI/2;m.position.y=.1;m.userData.dynamic=true;G.W.group.add(m);return m;
+  },
+  kill(f){f.dead=true;for(const m of f.ms){if(m.parent)m.parent.remove(m);if(m.material)m.material.dispose()}},
+  clear(adv){for(const f of adv.fx)Arena.kill(f);adv.fx.length=0},
+  /* run fn after t seconds (pauses with the game) */
+  delay(adv,t,fn){adv.fx.push({k:"timer",t:0,d:t,fn,ms:[]})},
+  near(x,z,r){return Math.hypot(P.x-x,P.z-z)<r+.8&&P.y<3.2},
+
+  /* a red disc that fills up, then boom(f). o.rock drops a boulder on it. */
+  ring(adv,x,z,r,delay,boom,o={}){
+    const col=o.col||"#ff3b30",base=Arena.flat(AR.circ,col,.22),fill=Arena.flat(AR.circ,col,.5);
+    base.position.x=fill.position.x=x;base.position.z=fill.position.z=z;base.scale.set(r,r,1);fill.scale.set(.05,.05,1);
+    const f={k:"ring",t:0,d:delay,x,z,r,boom,ms:[base,fill],base,fill};
+    if(o.rock){const rk=new THREE.Mesh(AR.rock,new THREE.MeshLambertMaterial({color:"#8d7b68"}));rk.scale.setScalar(Math.max(2,r*.5));rk.userData.dynamic=true;rk.position.set(x,60,z);G.W.group.add(rk);f.rock=rk;f.ms.push(rk)}
+    adv.fx.push(f);return f;
+  },
+  /* a red strip from (x0,z0) along (ux,uz) that fills up, then boom(f) */
+  line(adv,x0,z0,ux,uz,L,w,delay,boom){
+    const base=Arena.flat(AR.plane,"#ff3b30",.2),fill=Arena.flat(AR.plane,"#ff3b30",.5),rot=Math.atan2(-ux,-uz);
+    base.rotation.z=fill.rotation.z=rot;base.position.set(x0+ux*L/2,.1,z0+uz*L/2);base.scale.set(w,L,1);fill.scale.set(w,.05,1);fill.position.set(x0,.11,z0);
+    const f={k:"line",t:0,d:delay,x0,z0,ux,uz,L,w,boom,ms:[base,fill],base,fill};adv.fx.push(f);return f;
+  },
+  /* a thrown spear that flies along (ux,uz) and hurts whoever is in its path (jump over it too!) */
+  spear(adv,x0,z0,ux,uz,range,speed=64){
+    const shaft=new THREE.Mesh(AR.box,new THREE.MeshLambertMaterial({color:"#8d6e63"})),tip=new THREE.Mesh(AR.box,new THREE.MeshLambertMaterial({color:"#cfd8dc"}));
+    shaft.scale.set(.5,.5,10);tip.scale.set(.9,.9,1.8);tip.position.z=.55;shaft.add(tip);shaft.position.set(x0,2.6,z0);shaft.rotation.y=Math.atan2(ux,uz);shaft.userData.dynamic=true;G.W.group.add(shaft);
+    const f={k:"spear",x:x0,z:z0,ux,uz,go:0,range,speed,ms:[shaft,tip],m:shaft,hit:false};adv.fx.push(f);Snd.sfx("whoosh");return f;
+  },
+  /* a ring of shaking ground rushing outward: jump over it! */
+  wave(adv,x,z,speed=26,maxR=80){
+    const m=Arena.flat(AR.ring,"#ffb300",.75);m.position.set(x,.12,z);m.scale.set(2,2,1);
+    const f={k:"wave",R:2,x,z,speed,maxR,ms:[m],m,hit:false};adv.fx.push(f);return f;
+  },
+  boomFx(x,z,r,col){Part.burst(x,1.2,z,col||["#c8a97a","#ffffff","#8d7b68"],Math.round(10+r*2.6),14,.7,18,1.2);Snd.sfx("whack");Cam.shake=Math.max(Cam.shake,.8)},
+
+  /* a hit on the player: lose a heart, brief invincibility, knocked back. Returns true if it landed. */
+  hurt(adv,sx,sz,amt=1){
+    if(adv.inv>0||adv.over||adv.done)return false;
+    adv.hp-=amt;adv.inv=1.5;adv.hits++;Cam.shake=Math.max(Cam.shake,.9);flash("red",170);Snd.sfx("bad");
+    const dx=P.x-sx,dz=P.z-sz,m=Math.hypot(dx,dz)||1;adv.kb={vx:dx/m*26,vz:dz/m*26,t:.22};
+    Part.burst(P.x,P.y+3,P.z,["#ffffff","#ff8a80"],12,10,.5,16,.9);popText("Ouch!","bad");
+    AH.hearts(Math.max(0,adv.hp),adv.maxHp);
+    if(adv.hp<=0)Arena.down(adv);
+    return true;
+  },
+  /* out of hearts: you are knocked down but get right back up, so nobody is stuck */
+  down(adv){
+    adv.downs++;adv.hp=adv.maxHp;adv.inv=2.6;Arena.clear(adv);AH.hearts(adv.hp,adv.maxHp);
+    toast("Knocked down! Get back up and keep going! 💪","gold",2600);Snd.sfx("level");
+    if(adv.onDown)adv.onDown();
+  },
+  heal(adv,n=99){adv.hp=Math.min(adv.maxHp,adv.hp+n);AH.hearts(adv.hp,adv.maxHp)},
+
+  /* per-frame: timers, knock-back, blinking, every warning / spear / wave */
+  update(adv,dt){
+    adv.inv=Math.max(0,adv.inv-dt);
+    if(adv.kb){adv.kb.t-=dt;P.x+=adv.kb.vx*dt;P.z+=adv.kb.vz*dt;if(adv.kb.t<=0)adv.kb=null}
+    G.avatar.root.visible=adv.inv<=0||Math.floor(G.t*16)%2===0;
+    for(const f of adv.fx.slice()){
+      if(f.dead)continue;let done=false;
+      if(f.k==="timer"){f.t+=dt;if(f.t>=f.d){done=true;f.fn()}}
+      else if(f.k==="ring"){
+        f.t+=dt;const k=clamp(f.t/f.d,0,1),pulse=.5+.25*Math.sin(f.t*20);
+        f.fill.scale.set(f.r*k,f.r*k,1);f.fill.material.opacity=pulse;
+        if(f.rock){f.rock.position.y=lerp(60,1.6,k*k);f.rock.rotation.x+=dt*4;f.rock.rotation.z+=dt*3}
+        if(f.t>=f.d){done=true;f.boom(f)}
+      }else if(f.k==="line"){
+        f.t+=dt;const k=clamp(f.t/f.d,0,1);f.fill.scale.set(f.w,Math.max(.05,f.L*k),1);
+        f.fill.position.set(f.x0+f.ux*f.L*k/2,.11,f.z0+f.uz*f.L*k/2);f.fill.material.opacity=.4+.25*Math.sin(f.t*22);
+        if(f.t>=f.d){done=true;f.boom(f)}
+      }else if(f.k==="spear"){
+        const s=f.speed*dt;f.go+=s;f.x+=f.ux*s;f.z+=f.uz*s;f.m.position.x=f.x;f.m.position.z=f.z;
+        // distance from the player to the spear's body
+        const px=P.x-f.x,pz=P.z-f.z,along=px*f.ux+pz*f.uz,side=Math.abs(px*f.uz-pz*f.ux);
+        if(!f.hit&&side<2.1&&Math.abs(along)<5&&P.y<3.4){f.hit=Arena.hurt(adv,f.x-f.ux*4,f.z-f.uz*4)}
+        if(f.go>f.range)done=true;
+      }else if(f.k==="wave"){
+        f.R+=f.speed*dt;f.m.scale.set(f.R,f.R,1);f.m.material.opacity=clamp(1-f.R/f.maxR,.15,.8);
+        const d=Math.hypot(P.x-f.x,P.z-f.z),th=Math.max(1.6,f.R*.08+.8);
+        if(!f.hit&&Math.abs(d-f.R)<th&&P.y<2.2){f.hit=Arena.hurt(adv,f.x,f.z)}
+        if(f.R>f.maxR)done=true;
+      }
+      else if(f.k==="swish"){f.t+=dt;const k=f.t/.22;f.m.scale.set(f.R*k,f.R*k,1);f.m.material.opacity=.85*(1-k);if(f.t>.22)done=true}
+      if(done){Arena.kill(f)}
+    }
+    adv.fx=adv.fx.filter(f=>!f.dead);
+  }
+};
+/* ============================================================
+   KITS (part 3): the action fights.
+   sling = David vs Goliath, smash = Samson's brawl, raid = Gideon's night raid
+   ============================================================ */
+
+/* ====================== SLING: David vs Goliath ====================== */
+const GOL_SCALE=4,GOL_HEAD_Y=4.75*GOL_SCALE+.5,GOL_HEAD_R=3.9;
+Adv.K.sling={
+  input:null,
+  build(story,adv){
+    const W=newWorld(story.theme),g=W.group;W.spawn={x:0,y:.05,z:-30,yaw:0};
+    groundDisc(W,190,"#7ed957","#72cc4f");
+    for(const s of[-1,1])for(let i=0;i<6;i++)block(60-i*8,5,50,"#8bc34a",s*(120-i*3),i*5+2.5,40+i*2,g);
+    pbox(240,.4,12,"#4aa6ff",0,.08,-8,g,.85);
+    for(let i=0;i<10;i++)addRock(g,rand(-60,60),0,rand(-18,6),rand(.5,.9),"#9aa0ad");
+    for(let i=0;i<8;i++){block(8,5,8,pick(["#c9a97a","#d9c0a0"]),-55+i*14,2.5,-70,g)}
+    for(let i=0;i<10;i++){block(8,5,8,pick(["#7a4a3a","#8d5a3b"]),-70+i*15,2.5,172,g)}
+    const sl=adv.sl={phase:0,stones:[],got:0,reload:0,assist:.35*adv.boost,fly:null,askN:0,fall:0,flee:[],pickR:3.8+adv.boost*.4,gol:null,locked:false,t:0,t1:0,tipped:false};
+    // smooth stones by the brook
+    const sp=[[-26,-2],[-12,-10],[2,3],[16,-9],[27,1]];
+    sp.forEach(([x,z])=>{const s=new THREE.Group();pbox(1.6,1.2,1.3,"#b8bfca",0,.6,0,s);pbox(.4,.4,.4,"#ffe066",0,2.2,0,s);s.position.set(x,0,z);s.userData.dynamic=true;g.add(s);sl.stones.push({m:s,x,z,got:false})});
+    // Goliath
+    const G0=buildAvatar({skin:"#c9955c",face:"angry",shirt:"#7a5a3a",pants:"#5d4037",hat:"bronze",held:"spear",off:"shield",chest:"bronze",belt:"",boots:"peace",hair:"",hairc:"#2b2118",skirt:""});
+    G0.root.scale.setScalar(GOL_SCALE);G0.root.position.set(0,0,96);G0.root.rotation.y=Math.PI;G0.root.userData.dynamic=true;g.add(G0.root);
+    const gl=labelSprite("Goliath",3.4,{size:56,color:"#fff",stroke:"#5d1a14"});gl.position.set(0,GOL_HEAD_Y+6,96);g.add(gl);
+    const tg=labelSprite("◎",8.6,{size:120,color:"#ff5252",stroke:"#ffffff",pad:2});tg.material.depthTest=false;tg.renderOrder=20;tg.visible=false;tg.userData.base=tg.scale.clone();g.add(tg);
+    const gd=labelSprite("🛡️",8,{size:120,color:"#ffffff",stroke:"#455a64",pad:2});gd.material.depthTest=false;gd.renderOrder=20;gd.visible=false;g.add(gd);
+    sl.gol={a:G0,x:0,z:96,hp:100,phase:0,next:2.4,act:0,stag:0,down:false,lbl:gl,tg,gd,last:"",homeZ:40,guard:0,guardIn:5.5};
+    for(let i=0;i<8;i++){const p=tinyPerson("#7e57c2","#c9955c","#8d6e63");p.position.set(-40+i*11,0,150+(i%2)*6);p.scale.setScalar(1.8);p.rotation.y=Math.PI;p.userData.dynamic=true;g.add(p);sl.flee.push(p)}
+    const hint=labelSprite("🪨 Gather 5 smooth stones from the brook!",3.2,{size:50,color:"#fff",stroke:"#26233a"});hint.position.set(0,10,-12);g.add(hint);sl.hint=hint;
+    addClouds(W,14,150,24,70,1.2,-60,200);coinAnim(W);batchWorld(g);return W;
+  },
+  start(adv){AH.obj("Gather 5 smooth stones from the brook!");AH.count("🪨 0/5");Cam.dist=20},
+  cleanup(adv){$("xhair").hidden=true;G.avatar.set(S.wear);Arena.stop()},
+  update(dt,adv,paused){
+    const sl=adv.sl,gol=sl.gol,g=gol.a;if(paused)return;
+    adv.t+=dt;sl.t+=dt;
+    const place=()=>{g.root.position.x=gol.x;g.root.position.z=gol.z;gol.lbl.position.set(gol.x,GOL_HEAD_Y+6,gol.z)};
+    // ---------- 1. gather stones by the brook
+    if(sl.phase===0){
+      walkStep(dt);
+      for(const s of sl.stones){if(s.got)continue;s.m.rotation.y+=dt*2;if(Math.hypot(P.x-s.x,P.z-s.z)<sl.pickR){s.got=true;s.m.visible=false;sl.got++;Snd.sfx("coin");Part.burst(s.x,2,s.z,["#ffe066","#ffffff"],10,8,.6,10,.8);AH.count("🪨 "+sl.got+"/5");AH.prog(sl.got/5*.3);
+        if(sl.got>=5){sl.phase=1;sl.t1=0;sl.hint.visible=false;AH.obj("Goliath is marching toward you!");popText("Here he comes!");Snd.sfx("rumble")}}}
+      g.animate(dt,0,true,0);place();return;
+    }
+    // ---------- 2. Goliath marches in
+    if(sl.phase===1){
+      sl.t1+=dt;const k=clamp(sl.t1/3.2,0,1);gol.z=lerp(96,gol.homeZ,k);place();g.animate(dt,14,true,0);Cam.shake=Math.max(Cam.shake,.25*(1-k));
+      P.x=0;P.z=-10;P.y=0;P.face=0;P.speed=0;P.ground=DUMMY_GROUND;
+      this.cam(adv);
+      if(k>=1){
+        sl.phase=2;Input.touch||($("xhair").hidden=false);Arena.start(adv,3+(adv.boost>0?1:0));
+        G.avatar.set(Object.assign({},S.wear,{held:"sling"}));
+        AH.obj("Dodge the red warnings! Tap Goliath’s HEAD to sling a stone.");gol.next=1.6;
+        popText("The battle is the LORD’s!");toast("🏃 Dodge the red warnings · 🎯 tap his head to fire!","gold",4200);
+      }
+      return;
+    }
+    // ---------- 3. the fight
+    Arena.update(adv,dt);
+    if(!gol.down){
+      walkStep(dt);P.x=clamp(P.x,-34,34);P.z=clamp(P.z,-24,Math.min(12,gol.z-17));P.face=0;
+      sl.reload=Math.max(0,sl.reload-dt);
+      // Goliath: strafe, step forward as he gets hurt, wind up attacks
+      const hurtK=1-gol.hp/100;gol.homeZ=lerp(40,31,hurtK);
+      if(gol.stag>0){gol.stag-=dt;g.root.rotation.x=lerp(g.root.rotation.x,-.32,Math.min(1,dt*10));g.animate(dt,0,true,0)}
+      else{
+        g.root.rotation.x=lerp(g.root.rotation.x,0,Math.min(1,dt*8));
+        if(gol.act>0){gol.act-=dt;g.animate(dt,0,true,0)}
+        else{
+          gol.phase+=dt*.45;gol.x+=(Math.sin(gol.phase)*17-gol.x)*Math.min(1,dt*1.3);gol.z+=(gol.homeZ-gol.z)*Math.min(1,dt*.8);
+          g.animate(dt,5,true,0);
+          gol.guardIn-=dt;if(gol.guardIn<=0&&gol.guard<=0){gol.guard=1.9;gol.guardIn=rand(6,9);g.cheer=.4;toast("🛡️ He is guarding his head! Wait for it…","",1800)}
+          gol.next-=dt;if(gol.next<=0)this.attack(adv);
+        }
+      }
+      g.root.rotation.y=Math.PI+clamp((gol.x-P.x)*.006,-.25,.25);place();
+    }
+    // fire the sling
+    for(const f of Input.fireQ.splice(0))this.fire(adv,f.x,f.y);
+    for(const c of Input.pressQ.splice(0))if(c==="KeyF")this.fire(adv,null);
+    Input.tapQ=0;Input.upQ=0;
+    // the stone in flight
+    if(sl.fly){
+      const f=sl.fly;f.t+=dt;const k=clamp(f.t/f.T,0,1);
+      f.m.position.set(lerp(f.from.x,f.to.x,k),lerp(f.from.y,f.to.y,k)+Math.sin(k*Math.PI)*4,lerp(f.from.z,f.to.z,k));f.m.rotation.x+=dt*14;
+      if(Math.random()<.6)Part.burst(f.m.position.x,f.m.position.y,f.m.position.z,"#ffffff",1,2,.3,0,.5);
+      if(k>=1){G.W.group.remove(f.m);sl.fly=null;this.land(adv,f)}
+    }
+    // Goliath falls
+    if(gol.down){
+      sl.fall+=dt;g.root.rotation.x=-Math.min(Math.PI/2,sl.fall*2.4);g.root.position.y=0;gol.lbl.visible=false;gol.tg.visible=false;g.animate(dt,0,true,0);
+      sl.flee.forEach((p,i)=>{if(sl.fall>.6){p.position.z+=dt*(12+i);p.position.y=Math.abs(Math.sin(G.t*14+i))*.8;p.rotation.y=0}});
+      if(sl.fall>3.2&&!adv.done)Adv.complete(clamp(1-adv.downs*.2-adv.hits*.035,.35,1));
+    }
+    // the head target + crosshair + HUD
+    gol.guard=Math.max(0,gol.guard-dt);
+    const tg=gol.tg;tg.visible=!gol.down&&gol.guard<=0;gol.gd.visible=!gol.down&&gol.guard>0;gol.gd.position.set(gol.x,GOL_HEAD_Y,gol.z-6);tg.position.set(gol.x,GOL_HEAD_Y,gol.z-6);const pu=1+Math.sin(G.t*6)*.1;tg.scale.set(tg.userData.base.x*pu,tg.userData.base.y*pu,1);
+    const xh=$("xhair");xh.style.transform="translate("+Math.round(Input.ptr.x)+"px,"+Math.round(Input.ptr.y)+"px) translate(-50%,-50%)";xh.style.opacity=sl.reload>0?.35:1;
+    AH.prog(gol.hp/100);AH.count("👹 "+Math.ceil(gol.hp)+"%");AH.hearts(Math.max(0,adv.hp),adv.maxHp);
+    this.cam(adv);
+  },
+  cam(adv){const sl=adv.sl,gol=sl.gol;Cam.shake*=.92;setCam(P.x*.8,20,P.z-26,(P.x+gol.x)*.5,7.3,P.z+29)},
+  /* Goliath picks an attack: a thrown spear, a falling boulder, or a ground-shaking stomp */
+  attack(adv){
+    const sl=adv.sl,gol=sl.gol,g=gol.a,d=Math.hypot(P.x-gol.x,P.z-gol.z),hurtK=1-gol.hp/100;
+    const bag=d<26?["stomp","stomp","rock","spear"]:["spear","spear","rock","rock","stomp"];
+    let k=pick(bag);if(k===gol.last)k=pick(bag);gol.last=k;
+    const speedUp=1-hurtK*.18;
+    if(k==="spear"){
+      const w=1.15*speedUp,x0=gol.x,z0=gol.z-4,dx=P.x-x0,dz=P.z-z0,m=Math.hypot(dx,dz)||1,ux=dx/m,uz=dz/m,L=m+18;
+      Arena.line(adv,x0,z0,ux,uz,L,4.2,w,()=>Arena.spear(adv,x0,z0,ux,uz,L+16));
+      g.cheer=w;gol.act=w+.5;gol.next=w+1.7*speedUp+rand(0,.5);
+    }else if(k==="rock"){
+      const w=1.45*speedUp,drop=(x,z)=>Arena.ring(adv,x,z,7,w,f=>{Arena.boomFx(f.x,f.z,f.r);if(Arena.near(f.x,f.z,f.r))Arena.hurt(adv,f.x,f.z)},{rock:true});
+      drop(P.x,P.z);if(hurtK>.45)drop(P.x+rand(-14,14),clamp(P.z+rand(-8,8),-22,10));
+      g.cheer=w;gol.act=w*.8;gol.next=w+1.5*speedUp+rand(0,.5);
+    }else{
+      const w=1.0*speedUp;
+      Arena.ring(adv,gol.x,gol.z-2,11,w,f=>{
+        Arena.boomFx(f.x,f.z,f.r);Arena.wave(adv,f.x,f.z,27,86);Snd.sfx("rumble");Cam.shake=Math.max(Cam.shake,1.3);
+        if(Arena.near(f.x,f.z,f.r))Arena.hurt(adv,f.x,f.z);
+      },{col:"#ff9100"});
+      g.cheer=w;gol.act=w+.7;gol.next=w+1.9*speedUp+rand(0,.5);
+      if(!sl.tipped){sl.tipped=true;popText("JUMP the wave!");toast("🦘 Tap JUMP when the ground-wave reaches you!","gold",3200)}
+    }
+  },
+  /* the player taps: where did the stone go? */
+  fire(adv,x,y){
+    const sl=adv.sl,gol=sl.gol;
+    if(sl.reload>0||sl.locked||gol.down||sl.fly||sl.phase<2)return;
+    const hc=new THREE.Vector3(gol.x,GOL_HEAD_Y,gol.z);let to,kind="miss";
+    if(x==null){to=hc.clone();kind="head"}
+    else{
+      const r=rayAt(x,y),o=r.ray.origin,d=r.ray.direction,t=hc.clone().sub(o).dot(d),cl=o.clone().addScaledVector(d,Math.max(0,t));
+      if(t>0&&cl.distanceTo(hc)<=GOL_HEAD_R+sl.assist){kind="head";to=hc.clone().lerp(cl,.5)}
+      else{
+        const tt=(gol.z-o.z)/(d.z||.001);to=o.clone().addScaledVector(d,tt>0?tt:20);
+        if(Math.abs(to.x-gol.x)<5.4&&to.y>.4&&to.y<GOL_HEAD_Y-GOL_HEAD_R)kind="body";else to.y=Math.max(.6,to.y);
+      }
+    }
+    const from=new THREE.Vector3(P.x+.6,P.y+3.8,P.z+1.5),m=pbox(.9,.9,.9,"#9e9e9e",from.x,from.y,from.z,G.W.group);m.userData.dynamic=true;
+    sl.fly={m,from,to,T:.28+to.distanceTo(from)/170,t:0,kind};sl.reload=.8;G.avatar.cheer=.22;Snd.sfx("sling");
+  },
+  land(adv,f){
+    const sl=adv.sl,gol=sl.gol,to=f.to;let kind=f.kind;
+    if(kind==="head"){const hc=new THREE.Vector3(gol.x,GOL_HEAD_Y,gol.z);if(hc.distanceTo(to)>GOL_HEAD_R+sl.assist+2.6)kind="miss"}
+    if(kind==="head"&&gol.guard>0){popText("Blocked!","bad");Snd.sfx("bad");Part.burst(to.x,to.y,to.z,["#90a4ae","#ffffff"],12,10,.4,10,.8);if(!sl.guardTip){sl.guardTip=true;toast("His shield is up. Wait until the 🎯 shows again!","gold",3000)}return}
+    if(kind==="head"){this.headShot(adv,to);return}
+    if(kind==="body"){
+      popText("Clank!","bad");Snd.sfx("bad");Part.burst(to.x,to.y,to.z,["#cfd8dc","#ffffff"],12,10,.4,10,.8);
+      gol.hp=Math.max(1,gol.hp-3);gol.a.root.position.y=0;sl.assist+=.15;
+      if(!sl.bodyTip){sl.bodyTip=true;toast("Armor blocks it! Aim for his HEAD! 🎯","gold",3000)}
+    }else{
+      popText("Missed!","bad");Snd.sfx("splash");Part.burst(to.x,Math.max(.4,to.y),to.z,["#bfe3ff","#ffffff"],10,8,.5,14,.8);sl.assist+=.15;
+    }
+  },
+  /* a stone hits his forehead: faith powers the shot */
+  headShot(adv,at){
+    const sl=adv.sl,gol=sl.gol;sl.locked=true;
+    Part.burst(at.x,at.y,at.z,["#ffd54f","#ffffff","#ff8a65"],26,14,.8,16,1.2);Snd.sfx("rumble");flash("white",150);Cam.shake=1.4;popText("HEAD SHOT!");
+    const qn=adv.story.linked[sl.askN++%adv.story.linked.length];
+    askFaith(qn,r=>{
+      sl.locked=false;resetInputQueues();
+      const dmg=r.first?28:16;gol.hp=Math.max(0,gol.hp-dmg);gol.stag=1.9;gol.act=0;gol.next=2.4;sl.assist=Math.max(0,sl.assist-.2);
+      Part.confetti(gol.x,GOL_HEAD_Y,gol.z-3,r.first?70:30);Snd.sfx(r.first?"level":"good");
+      popText(r.first?"POWER SHOT!":"Good hit!");
+      if(gol.hp<=0){gol.down=true;sl.fall=0;Snd.sfx("rumble");Cam.shake=2.2;flash("white",220);popText("HE FELL!");Arena.clear(adv);toast("David trusted the LORD, and the giant fell! 🙌","good",3200)}
+      else toast(r.first?"💥 Goliath staggers! Keep dodging, keep aiming!":"Goliath is hurt. Keep going!","good",2200);
+    },{title:"Aim true!",line:"Your stone is flying at his forehead! Answer to put faith behind it."});
+  }
+};
+
+/* ====================== SMASH: Samson's brawl ====================== */
+const SM_TEMPLE_Z=96;
+Adv.K.smash={
+  input:null,
+  build(story,adv){
+    const W=newWorld(story.theme),g=W.group;W.spawn={x:0,y:.05,z:-8,yaw:0};
+    groundDisc(W,170,"#dcb980","#d2ad74");
+    for(let i=0;i<18;i++){const a=i/18*Math.PI*2,r=rand(62,86);addRock(g,Math.cos(a)*r,0,Math.sin(a)*r+30,rand(1,2.2),"#b49a85")}
+    const sm=adv.sm={step:0,t:0,wave:0,waveN:[4,5,6],spawned:0,spawnT:0,kills:0,total:15,swingCd:0,buff:1,meter:0,walk:0,power:.075*(1+.12*adv.boost),
+      lion:null,lionHp:5,lionSt:"stalk",lionT:0,lionFly:0,lunge:null,lungeHit:false,pillarsGo:false,fall:0,pool:[],ask:false,tm:null,tmLbl:null,tip:false};
+    const L=buildPet("lion");L.scale.setScalar(3.4);L.position.set(0,0,32);L.rotation.y=Math.PI;L.userData.dynamic=true;g.add(L);sm.lion=L;
+    for(let i=0;i<6;i++){
+      const s=tinyPerson("#7e57c2","#c9955c","#8d6e63");s.scale.setScalar(2.2);s.visible=false;s.userData.dynamic=true;
+      pbox(.18,.18,3.6,"#8d6e63",.55,1.5,.9,s);pbox(.28,.28,.7,"#cfd8dc",.55,1.5,2.8,s);
+      if(i%3===2)pbox(.14,1.5,1.1,"#c0932b",-.85,1.7,.2,s);
+      g.add(s);sm.pool.push({m:s,x:0,z:0,hp:1,shield:i%3===2,st:"off",t:0,vx:0,vy:0,vz:0,r:null});
+    }
+    const bricks=[],tz=SM_TEMPLE_Z;
+    for(const px of[-7,7])for(let r=0;r<9;r++)bricks.push({x:px,y:r*2+1,z:tz,sx:3.4,sy:2,sz:3.4,c:r%2?"#d9cdb4":"#cfc2a6"});
+    for(const px of[-17,17])for(let r=0;r<9;r++)bricks.push({x:px,y:r*2+1,z:tz+6,sx:3.2,sy:2,sz:3.2,c:"#cfc2a6"});
+    for(let ix=-12;ix<=12;ix+=2.4)for(let iz=tz-4;iz<=tz+8;iz+=2.4)bricks.push({x:ix,y:19,z:iz,s:2.4,c:(ix+iz|0)%2?"#c8b99a":"#d6c9ac"});
+    for(let ix=-8;ix<=8;ix+=2.4)bricks.push({x:ix,y:21.4,z:tz+2,s:2.4,c:"#bfae8c"});
+    sm.tm=brickField(W,bricks);sm.tm.im.visible=false;
+    const lb=labelSprite("Temple of Dagon",4,{size:56,color:"#fff",stroke:"#5d3a1a"});lb.position.set(0,30,tz+2);lb.visible=false;g.add(lb);sm.tmLbl=lb;
+    batchWorld(g);return W;
+  },
+  start(adv){
+    Arena.start(adv,3+(adv.boost>0?1:0));AH.btn("SMASH");AH.obj("A lion attacks! Dodge its pounce, then smash it while it is tired!");AH.prog(1);AH.count("🦁 5");
+    toast("🕹️ Move to dodge · tap SMASH (or the right side) to swing!","gold",4600);
+  },
+  cleanup(adv){Arena.stop();AH.btn()},
+  update(dt,adv,paused){
+    const sm=adv.sm,L=sm.lion;if(paused)return;
+    adv.t+=dt;sm.t+=dt;sm.swingCd=Math.max(0,sm.swingCd-dt);
+    const ask=(i,next)=>{if(sm.ask)return;sm.ask=true;sm.step=-1;askFaith(adv.story.linked[i],r=>{sm.ask=false;sm.step=next;sm.t=0;resetInputQueues();
+      if(next===2){Arena.heal(adv,r.first?99:1);sm.buff=Math.min(1.6,sm.buff+.3);popText("Strength of the LORD!");Part.confetti(P.x,P.y,P.z,60);Snd.sfx("level");AH.prog(0);AH.count("👊 0/"+sm.total);AH.obj("Philistine soldiers attack! Bonk them before they stab!")}},next===2?{title:"Samson prays",line:"The lion is gone! Samson thanks God for his strength. Answer to be filled with power!"}:{})};
+    // ---------- the brawl (steps 0 and 2)
+    if(sm.step===0||sm.step===2){
+      let swings=(Input.jumpQ?1:0)+Input.fireQ.splice(0).length;Input.jumpQ=false;Input.tapQ=0;Input.upQ=0;
+      for(const c of Input.pressQ.splice(0))if(c==="KeyF"||c==="KeyJ")swings++;
+      Arena.update(adv,dt);
+      walkStep(dt);P.x=clamp(P.x,-34,34);P.z=clamp(P.z,-22,40);P.face=0;
+      if(swings&&sm.swingCd<=0)this.swing(adv);
+      if(sm.step===0)this.lion(adv,dt);else this.soldiers(adv,dt);
+      AH.hearts(Math.max(0,adv.hp),adv.maxHp);
+      if(sm.step===0&&sm.lionFly>0){sm.lionFly+=dt;const t=sm.lionFly;L.position.z=sm.flyZ+t*40;L.position.y=Math.sin(Math.min(1,t/1.2)*Math.PI)*16;L.rotation.x=t*5;
+        if(t>1.4){L.visible=false;Arena.clear(adv);ask(0,2)}}
+    }
+    // ---------- walk to the temple
+    else if(sm.step===3){
+      Arena.update(adv,dt);sm.walk+=dt;const k=clamp(sm.walk/2.6,0,1);P.x*=1-k*.1;P.z=lerp(sm.z0===undefined?(sm.z0=P.z):sm.z0,SM_TEMPLE_Z-22,k);P.speed=k<1?9:0;P.ground=DUMMY_GROUND;P.face=0;
+      sm.tm.im.visible=true;sm.tmLbl.visible=true;AH.obj("Samson reaches the temple pillars…");AH.btn("PUSH");
+      if(k>=1)ask(2,4);
+    }
+    // ---------- pray and push the pillars
+    else if(sm.step===4){
+      if(sm.t<.05){Arena.stop();Input.kit="smash";sm.meter=0;AH.obj("Push the pillars! Tap, click, or press SPACE fast!");AH.prog(0);AH.hearts(null)}
+      const taps=Input.tapQ+(Input.jumpQ?1:0);Input.tapQ=0;Input.jumpQ=false;Input.pressQ.length=0;Input.swipeQ.length=0;Input.fireQ.length=0;
+      P.x=0;P.z=SM_TEMPLE_Z-22;P.y=0;P.speed=0;P.ground=DUMMY_GROUND;P.face=0;
+      if(!sm.pillarsGo){
+        if(taps){sm.meter+=taps*sm.power*(sm.t>10?1.5:1);G.avatar.cheer=.12;Snd.sfx("whack");Cam.shake=Math.max(Cam.shake,.35)}
+        sm.meter=clamp(sm.meter-dt*.36*(sm.t>12?.5:1),0,1.01);AH.prog(sm.meter);AH.count("💪");
+        if(sm.meter>=1){sm.pillarsGo=true;sm.fall=0;Snd.sfx("rumble");sm.tm.go(0,SM_TEMPLE_Z+2,1.15);Cam.shake=2;flash("white",260);Part.burst(0,10,SM_TEMPLE_Z+2,["#d9cdb4","#c8b99a","#ffffff"],110,24,1.8,10,2);popText("CRASH!")}
+      }else{
+        sm.fall+=dt;sm.tm.update(dt);Cam.shake=Math.max(Cam.shake,.4*(1-clamp(sm.fall/2.5,0,1)));sm.tmLbl.visible=false;G.avatar.cheer=.5;
+        if(sm.fall>3&&!adv.done)Adv.complete(clamp(1-adv.downs*.18-(sm.t>25?.2:0),.35,1));
+      }
+    }
+    Cam.shake*=Math.pow(.04,dt);
+    if(sm.step<=2)setCam(P.x*.7,22,P.z-26,P.x*.5,6,P.z+24);else setCam(0,12,P.z-18,0,8,P.z+26);
+  },
+  /* Samson's swing: everything close in front of him gets bonked */
+  swing(adv){
+    const sm=adv.sm,R=9.5*sm.buff;sm.swingCd=.34;G.avatar.cheer=.22;Snd.sfx("whack");Cam.shake=Math.max(Cam.shake,.3);
+    Part.burst(P.x,3,P.z+3,["#ffd54f","#ffffff"],8,10,.4,8,.9);
+    let hit=0;
+    if(sm.step===0&&sm.lionHp>0&&sm.lionSt!=="lunge"&&sm.lionFly===0){
+      const L=sm.lion;if(Math.hypot(L.position.x-P.x,L.position.z-P.z)<R+4&&L.position.z>P.z-3){
+        const dmg=sm.lionSt==="tired"?2:1;sm.lionHp=Math.max(0,sm.lionHp-dmg);hit++;
+        popText(pick(["BONK!","POW!","BAM!"]));Snd.sfx("whack");Part.burst(L.position.x,4,L.position.z,["#ffd54f","#ffffff"],16,12,.5,12,1);Cam.shake=.7;
+        const dx=L.position.x-P.x,dz=L.position.z-P.z,m=Math.hypot(dx,dz)||1;L.position.x+=dx/m*5;L.position.z+=dz/m*5;
+        if(sm.lionSt==="tired")sm.lionT=Math.max(sm.lionT,.5);else{sm.lionSt="stalk";sm.lionT=1.3;Arena.clear(adv)}
+        AH.prog(sm.lionHp/5);AH.count("🦁 "+sm.lionHp);
+        if(sm.lionHp<=0){sm.lionFly=.001;sm.flyZ=L.position.z;Snd.sfx("rumble");popText("Whoosh!");Part.burst(L.position.x,5,L.position.z,["#ffffff","#ffd54f"],40,16,.9,12,1.5);flash("white",120);Arena.clear(adv)}
+      }
+    }
+    if(sm.step===2)for(const s of sm.pool){
+      if(s.st==="off"||s.st==="fly")continue;
+      if(Math.hypot(s.x-P.x,s.z-P.z)<R&&s.z>P.z-4){
+        hit++;s.hp--;
+        if(s.hp>0){const dx=s.x-P.x,dz=s.z-P.z,m=Math.hypot(dx,dz)||1;s.x+=dx/m*6;s.z+=dz/m*6;s.st="walk";s.t=0;if(s.r)Arena.kill(s.r);popText("CLANG!");Snd.sfx("bad");Part.burst(s.x,4,s.z,["#c0932b","#ffffff"],8,9,.4,9,.8)}
+        else{s.st="fly";s.t=0;if(s.r)Arena.kill(s.r);const dx=s.x-P.x,dz=s.z-P.z,m=Math.hypot(dx,dz)||1;s.vx=dx/m*18+rand(-6,6);s.vz=dz/m*22;s.vy=24;sm.kills++;popText(pick(["BONK!","POW!","BAM!"]));Snd.sfx("whack");Part.burst(s.x,4,s.z,["#ffd54f","#ffffff"],14,12,.5,12,1);Cam.shake=.6;
+          AH.prog(sm.kills/sm.total);AH.count("👊 "+sm.kills+"/"+sm.total)}
+      }
+    }
+    const ring=Arena.flat(AR.ring,"#ffffff",.85);ring.position.set(P.x,.2,P.z);ring.scale.set(2,2,1);adv.fx.push({k:"swish",t:0,ms:[ring],m:ring,R});
+  },
+  /* the lion: stalks, crouches (red warning), pounces, then is tired */
+  lion(adv,dt){
+    const sm=adv.sm,L=sm.lion;if(sm.lionFly>0||sm.lionHp<=0)return;
+    const dx=P.x-L.position.x,dz=P.z-L.position.z,d=Math.hypot(dx,dz)||1,face=Math.atan2(dx,dz);
+    sm.lionT-=dt;
+    if(sm.lionSt==="stalk"){
+      L.rotation.y=face;L.scale.y=3.4;L.position.y=0;
+      if(d>16){L.position.x+=dx/d*9*dt;L.position.z+=dz/d*9*dt}
+      if(sm.lionT<=0&&d<34){ // crouch: a red strip shows where the pounce will go
+        sm.lionSt="wind";sm.lionT=1.0-.05*(5-sm.lionHp);const ux=dx/d,uz=dz/d,x0=L.position.x,z0=L.position.z,len=d+16;sm.ux=ux;sm.uz=uz;
+        Arena.line(adv,x0,z0,ux,uz,len,6,sm.lionT,()=>{sm.lionSt="lunge";sm.lionT=.5;sm.lungeHit=false;Snd.sfx("whoosh")});
+      }
+    }else if(sm.lionSt==="wind"){
+      L.scale.y=3.4*.8;L.position.x+=Math.sin(G.t*60)*.05;
+    }else if(sm.lionSt==="lunge"){
+      L.scale.y=3.4;L.position.x+=sm.ux*70*dt;L.position.z+=sm.uz*70*dt;L.position.y=Math.sin((1-sm.lionT/.5)*Math.PI)*2;
+      if(!sm.lungeHit&&Math.hypot(P.x-L.position.x,P.z-L.position.z)<5.2&&P.y<3){sm.lungeHit=Arena.hurt(adv,L.position.x,L.position.z)}
+      if(sm.lionT<=0){sm.lionSt="tired";sm.lionT=1.9;L.position.y=0;popText("Tired!");if(!sm.tip){sm.tip=true;toast("😮‍💨 The lion is tired! Run up and smash it!","gold",2800)}}
+    }else if(sm.lionSt==="tired"){
+      L.scale.y=3.4*(1+Math.sin(G.t*9)*.03);L.rotation.y=face;
+      if(sm.lionT<=0){sm.lionSt="stalk";sm.lionT=.6}
+    }
+    L.position.x=clamp(L.position.x,-40,40);L.position.z=clamp(L.position.z,-26,52);
+  },
+  /* waves of soldiers that march in, wind up a spear thrust, and get bonked away */
+  soldiers(adv,dt){
+    const sm=adv.sm,waveN=sm.waveN[sm.wave];
+    if(sm.wave<3){
+      // spawn
+      if(sm.spawned<waveN){sm.spawnT-=dt;if(sm.spawnT<=0){const s=sm.pool.find(s=>s.st==="off");if(s){
+        s.st="walk";s.hp=s.shield?2:1;s.x=rand(-30,30);s.z=rand(38,46);s.t=0;s.m.visible=true;s.m.rotation.set(0,Math.PI,0);s.m.position.set(s.x,0,s.z);sm.spawned++;sm.spawnT=.9;Snd.sfx("pop");
+        if(sm.wave===0&&sm.spawned===1)AH.obj("Philistine soldiers attack! Bonk them before they stab!")}}}
+      else if(sm.pool.every(s=>s.st==="off")){ // wave cleared
+        sm.wave++;sm.spawned=0;sm.spawnT=1.6;
+        if(sm.wave===1)this.askBetween(adv,1);
+        else if(sm.wave>=3){sm.step=3;sm.walk=0;Arena.clear(adv);popText("They ran away!")}
+        else popText("Next wave!");
+      }
+    }
+    for(const s of sm.pool){
+      if(s.st==="off")continue;s.t+=dt;
+      if(s.st==="walk"){
+        const dx=P.x-s.x,dz=P.z-s.z,d=Math.hypot(dx,dz)||1;s.m.rotation.y=Math.atan2(dx,dz);
+        if(d>9){const sp=6.4+sm.wave*.9;s.x+=dx/d*sp*dt;s.z+=dz/d*sp*dt;s.m.userData.legs.forEach((l,k)=>l.rotation.x=Math.sin(G.t*9+k*3)*.6)}
+        else{s.st="wind";s.t=0;s.r=Arena.ring(adv,s.x,s.z,10,.75,f=>{if(s.st==="wind"){s.st="rec";s.t=0;Part.burst(f.x,3,f.z,["#cfd8dc","#ffffff"],8,8,.4,8,.8);Snd.sfx("whoosh");if(Arena.near(f.x,f.z,f.r))Arena.hurt(adv,f.x,f.z)}})}
+        s.m.position.set(s.x,0,s.z);
+      }else if(s.st==="wind"){s.m.position.set(s.x,Math.abs(Math.sin(s.t*18))*.3,s.z);s.m.rotation.y=Math.atan2(P.x-s.x,P.z-s.z)}
+      else if(s.st==="rec"){s.m.position.set(s.x,0,s.z);if(s.t>1.1){s.st="walk";s.t=0}}
+      else if(s.st==="fly"){s.vy-=46*dt;s.x+=s.vx*dt;s.z+=s.vz*dt;s.m.position.set(s.x,Math.max(0,s.m.position.y+s.vy*dt),s.z);s.m.rotation.x+=dt*9;s.m.rotation.z+=dt*6;if(s.t>1.1){s.st="off";s.m.visible=false;s.m.rotation.set(0,0,0)}}
+      s.x=clamp(s.x,-44,44);s.z=clamp(s.z,-30,60);
+    }
+  },
+  /* between waves a faith question powers Samson up */
+  askBetween(adv,i){
+    const sm=adv.sm;sm.ask=true;sm.step=-1;AH.btn("SMASH");
+    askFaith(adv.story.linked[i],r=>{sm.ask=false;sm.step=2;sm.t=0;resetInputQueues();Arena.heal(adv,r.first?99:1);sm.buff=Math.min(1.6,sm.buff+.3);popText("Strength of the LORD!");Part.confetti(P.x,P.y,P.z,60);Snd.sfx("level")},{title:"Samson prays",line:"Samson asks God for strength. Answer to be filled with the Spirit’s power!"});
+  }
+};
+
+/* ====================== RAID: Gideon's night raid ====================== */
+Adv.K.raid={
+  input:null,
+  build(story,adv){
+    const W=newWorld(story.theme),g=W.group;W.spawn={x:0,y:.05,z:-40,yaw:0};
+    groundDisc(W,76,"#3f5a3c","#38523a");
+    const rd=adv.rd={qp:new THREE.Vector3(),step:0,t:0,lit:0,total:9,asked:0,stands:[],sent:[],sleepers:[],swingCd:0,reach:6.5+adv.boost*.7,ask:false,fin:false,finT:0,men:null,tip:false};
+    // the sleeping Midianite camp: tents + sleeping soldiers in the middle
+    const tents=[[-8,4],[7,8],[0,-5],[-13,-8],[12,-6],[3,17],[-6,14]];
+    tents.forEach(([x,z])=>{block(7,4,7,pick(["#a0522d","#8d5a3b","#b86b3b"]),x,2,z,g);block(5,2,5,"#6d4c41",x,5,z,g)});
+    for(let i=0;i<10;i++){const a=i/10*Math.PI*2,r=rand(5,16),p=tinyPerson("#7e57c2");p.position.set(Math.cos(a)*r,0,Math.sin(a)*r);p.scale.setScalar(1.5);p.rotation.z=1.5;p.userData.dynamic=true;g.add(p);rd.sleepers.push({p,x:p.position.x,z:p.position.z,vx:0,vz:0})}
+    const lbl=labelSprite("Midianite camp",4,{size:60,color:"#fff",stroke:"#3a2a52"});lbl.position.set(0,14,0);g.add(lbl);
+    // Gideon's men on the ridge (they light up as you smash the jars)
+    const N=40,men=[];for(let i=0;i<N;i++){const a=i/N*Math.PI*2,r=64;men.push({x:Math.cos(a)*r,z:Math.sin(a)*r})}
+    const body=brickField(W,men.map(m=>({x:m.x,y:1.6,z:m.z,sx:1.2,sy:2.4,sz:.9,c:"#d8c7a0"}))),head=brickField(W,men.map(m=>({x:m.x,y:3.4,z:m.z,s:1.1,c:"#e0ac69"})));
+    const flm=brickField(W,men.map(m=>({x:m.x+.9,y:3.5,z:m.z,sx:.01,sy:.01,sz:.01,c:"#ffb300"})));flm.im.material=new THREE.MeshBasicMaterial({color:"#ffd54f"});
+    rd.men={men,flm,n:0};
+    // the nine jars on the ridge ring
+    const R=44;
+    for(let i=0;i<rd.total;i++){
+      const a=i/rd.total*Math.PI*2+.4,x=Math.cos(a)*R,z=Math.sin(a)*R,grp=new THREE.Group();grp.position.set(x,0,z);
+      pbox(.5,4.4,.5,"#6d4c41",0,2.2,0,grp);const jar=new THREE.Group();pbox(2.4,2.6,2.4,"#9c5a2b",0,5.6,0,jar);pbox(1.3,.7,1.3,"#7a4521",0,7.2,0,jar);grp.add(jar);
+      const fl=new THREE.Mesh(UNIT,new THREE.MeshBasicMaterial({color:"#ffb300"}));fl.scale.set(1.5,2.6,1.5);fl.position.y=6.6;fl.visible=false;grp.add(fl);
+      const glow=new THREE.Mesh(new THREE.CircleGeometry(11,24),new THREE.MeshBasicMaterial({map:gradTex("#ffb74d"),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));glow.rotation.x=-Math.PI/2;glow.position.y=.12;glow.visible=false;glow.userData.own=true;grp.add(glow);
+      const pr=labelSprite("SMASH!",2.6,{size:60,color:"#fff",stroke:"#b23b00"});pr.position.y=10.5;pr.visible=false;pr.material.depthTest=false;grp.add(pr);
+      const bc=new THREE.Mesh(UNIT,new THREE.MeshBasicMaterial({color:"#ffcc66",transparent:true,opacity:.28,depthWrite:false,blending:THREE.AdditiveBlending}));bc.scale.set(2.2,46,2.2);bc.position.y=23;bc.userData.own=true;grp.add(bc);
+      grp.userData.dynamic=true;g.add(grp);rd.stands.push({x,z,grp,jar,fl,glow,pr,bc,lit:false});
+    }
+    // sentries with lantern cones
+    const mk=(i)=>{
+      const m=tinyPerson("#455a64","#d09a6a","#8d6e63");m.scale.setScalar(2.3);m.userData.dynamic=true;pbox(.12,.6,.12,"#6d4c41",.9,1.2,.3,m);const lan=new THREE.Mesh(UNIT,new THREE.MeshBasicMaterial({color:"#ffe066"}));lan.scale.set(.5,.6,.5);lan.position.set(.9,.7,.3);m.add(lan);g.add(m);
+      const half=.62,cone=new THREE.Mesh(new THREE.CircleGeometry(1,20,-half,half*2),new THREE.MeshBasicMaterial({color:"#ffe066",transparent:true,opacity:.2,depthWrite:false,side:THREE.DoubleSide}));cone.rotation.x=-Math.PI/2;cone.position.y=.13;cone.userData.own=true;g.add(cone);
+      const ex=labelSprite("❗",3.4,{size:80,color:"#ff3b30",stroke:"#fff"});ex.visible=false;ex.material.depthTest=false;g.add(ex);
+      return{m,cone,ex,x:0,z:0,th:i/4*Math.PI*2,w:(i%2?1:-1)*(.17+.02*i),r0:26+(i%2)*4,ph:i*1.7,st:"patrol",t:0,face:0,half,range:19};
+    };
+    for(let i=0;i<4;i++)rd.sent.push(mk(i));
+    rd.sent.forEach(s=>{s.x=Math.cos(s.th)*s.r0;s.z=Math.sin(s.th)*s.r0});
+    addClouds(W,10,140,24,60,1.2,-60,100);coinAnim(W);batchWorld(g);return W;
+  },
+  start(adv){
+    Arena.start(adv,3+(adv.boost>0?1:0));AH.btn("SMASH");AH.obj(adv.story.goal);AH.prog(0);AH.count("🏺 0/9");
+    setTheme({top:"#0c1030",bot:"#2a2f5a",deco:"stars"});
+    toast("🕹️ Sneak to a jar · tap SMASH when you are next to it!","gold",4800);
+  },
+  cleanup(adv){Arena.stop();AH.btn()},
+  update(dt,adv,paused){
+    const rd=adv.rd;if(paused)return;adv.t+=dt;rd.t+=dt;rd.swingCd=Math.max(0,rd.swingCd-dt);
+    Arena.update(adv,dt);
+    let swing=(Input.jumpQ?1:0)+Input.fireQ.splice(0).length;Input.jumpQ=false;Input.tapQ=0;Input.upQ=0;
+    for(const c of Input.pressQ.splice(0))if(c==="KeyF"||c==="KeyJ")swing++;
+    if(!rd.fin){
+      walkStep(dt);const m=Math.hypot(P.x,P.z);if(m>58){P.x*=58/m;P.z*=58/m}P.face=Math.atan2(P.vx||0,P.vz||0)||P.face;
+      // jars
+      let nearest=null,nd=1e9;
+      for(const st of rd.stands){st.pr.visible=false;if(st.lit)continue;const d=Math.hypot(P.x-st.x,P.z-st.z);if(d<nd){nd=d;nearest=st}}
+      if(nearest&&nd<rd.reach){nearest.pr.visible=true;nearest.pr.scale.setScalar(1+Math.sin(G.t*10)*.08)}
+      G.W.quest=nearest?{pos:rd.qp.set(nearest.x,8,nearest.z),label:"Smash this jar!",sec:{name:""}}:null;
+      if(swing&&rd.swingCd<=0){
+        rd.swingCd=.4;G.avatar.cheer=.2;
+        if(nearest&&nd<rd.reach)this.smashJar(adv,nearest);else{Snd.sfx("whoosh")}
+      }
+      // sentries
+      for(const s of rd.sent)this.sentry(adv,s,dt);
+    }
+    // sleepers wake and run at the finale
+    for(const z of rd.sleepers)if(z.vx||z.vz){z.p.position.x+=z.vx*dt;z.p.position.z+=z.vz*dt;z.p.position.y=Math.abs(Math.sin(G.t*14+z.x))*.9;z.p.rotation.z=0;z.p.rotation.y=Math.atan2(z.vx,z.vz)}
+    for(const s of rd.stands)if(s.lit){s.fl.scale.y=2.6+Math.sin(G.t*14+s.x)*.4;s.fl.rotation.y+=dt*3;s.glow.material.opacity=.7+Math.sin(G.t*9+s.z)*.15}
+    AH.hearts(Math.max(0,adv.hp),adv.maxHp);
+    if(rd.fin){G.W.quest=null;rd.finT+=dt;Cam.shake*=Math.pow(.05,dt);if(rd.finT>3.8&&!adv.done)Adv.complete(clamp(1-adv.downs*.2-adv.hits*.04,.35,1))}
+    Cam.shake*=Math.pow(.04,dt);
+    const k=rd.fin?Math.min(1,rd.finT/2):0;
+    setCam(P.x*.5*(1-k),50+k*28,P.z*.5-30-k*20,P.x*.4*(1-k),0,P.z*.5+8*(1-k));
+  },
+  smashJar(adv,st){
+    const rd=adv.rd;st.lit=true;st.jar.visible=false;st.fl.visible=true;st.glow.visible=true;st.pr.visible=false;rd.lit++;
+    Part.burst(st.x,6,st.z,["#9c5a2b","#c98f5a","#ffd54f"],26,14,.8,16,1.2);Snd.sfx("whack");Snd.sfx("horn");Cam.shake=.8;popText("CRASH!");
+    // light up a few of Gideon's men on the ridge
+    st.bc.visible=false;
+    const rm=rd.men,want=Math.ceil(rd.lit/rd.total*rm.men.length),dm=new THREE.Object3D();
+    while(rm.n<want){const m=rm.men[rm.n];dm.position.set(m.x+.9,3.9,m.z);dm.scale.set(.9,1.6,.9);dm.updateMatrix();rm.flm.im.setMatrixAt(rm.n,dm.matrix);rm.n++}rm.flm.im.instanceMatrix.needsUpdate=true;
+    AH.count("🏺 "+rd.lit+"/"+rd.total);AH.prog(rd.lit/rd.total);
+    const due=Math.floor(rd.lit/3);
+    if(rd.lit>=rd.total){
+      rd.fin=true;rd.finT=0;Arena.clear(adv);Snd.sfx("horn");flash("white",220);Cam.shake=1.6;popText("A sword for the LORD and for Gideon!");
+      for(const z of rd.sleepers){const m=Math.hypot(z.x,z.z)||1;z.vx=z.x/m*rand(10,17);z.vz=z.z/m*rand(10,17)}
+      for(const s of rd.sent){s.cone.visible=false;s.ex.visible=false;const m=Math.hypot(s.x,s.z)||1;s.fx=s.x/m*14;s.fz=s.z/m*14;s.st="flee"}
+      Part.confetti(P.x,3,P.z,100);
+      // the last question comes before the victory
+      setTimeout(()=>{if(!adv.done)askFaith(adv.story.linked[2%adv.story.linked.length],()=>{resetInputQueues()},{title:"Gideon’s signal",line:"Every torch is lit! One last question: what truth did Gideon’s men trust?"})},900);
+    }else if(due>rd.asked&&rd.lit<rd.total){
+      rd.asked=due;const qn=adv.story.linked[(due-1)%adv.story.linked.length];
+      setTimeout(()=>askFaith(qn,r=>{resetInputQueues();Arena.heal(adv,r.first?99:1);popText(r.first?"Courage!":"Keep going!");Snd.sfx("level")},{title:"Gideon checks his men",line:"Three jars smashed! Answer to give your men courage (and a heart back)."}),700);
+    }
+    else if(!rd.tip){rd.tip=true;toast("🏺 "+(rd.total-rd.lit)+" more jars to smash!","gold",2200)}
+  },
+  /* a sentry walks his loop with a lantern; if you stand in the light he gives chase */
+  sentry(adv,s,dt){
+    const rd=adv.rd;s.t+=dt;
+    let tx,tz,sp=7;
+    if(s.st==="patrol"){
+      s.th+=s.w*dt;const r=s.r0+Math.sin(rd.t*.5+s.ph)*5;tx=Math.cos(s.th)*r;tz=Math.sin(s.th)*r;sp=Math.hypot(tx-s.x,tz-s.z)>3?11:20;
+      const dx=P.x-s.x,dz=P.z-s.z,d=Math.hypot(dx,dz),fa=Math.atan2(tz-s.z,tx-s.x);
+      const diff=Math.abs(Math.atan2(Math.sin(Math.atan2(dz,dx)-s.face),Math.cos(Math.atan2(dz,dx)-s.face)));
+      if(d<s.range&&diff<s.half&&adv.inv<=0&&!rd.fin){s.st="chase";s.t=0;s.ex.visible=true;Snd.sfx("pop");popText("Spotted!","bad")}
+    }else if(s.st==="chase"){
+      tx=P.x;tz=P.z;sp=11.5;
+      if(Math.hypot(P.x-s.x,P.z-s.z)<4.2&&P.y<3){if(Arena.hurt(adv,s.x,s.z)){s.st="patrol";s.ex.visible=false;s.th=Math.atan2(s.z,s.x)}}
+      if(s.t>3.2){s.st="patrol";s.ex.visible=false;s.th=Math.atan2(s.z,s.x)}
+    }else{tx=s.fx;tz=s.fz;sp=14}
+    const dx=tx-s.x,dz=tz-s.z,d=Math.hypot(dx,dz)||1,st=Math.min(d,sp*dt);s.x+=dx/d*st;s.z+=dz/d*st;
+    if(d>.05)s.face=Math.atan2(dz,dx);
+    s.m.position.set(s.x,Math.abs(Math.sin(G.t*9+s.ph))*.3,s.z);s.m.rotation.y=Math.atan2(Math.cos(s.face),-Math.sin(s.face))-Math.PI/2+Math.PI/2;
+    s.m.rotation.y=Math.atan2(Math.cos(s.face),Math.sin(s.face));
+    s.m.userData.legs.forEach((l,k)=>l.rotation.x=Math.sin(G.t*9+k*3)*.6);
+    s.cone.position.set(s.x,.13,s.z);s.cone.rotation.z=-s.face;s.cone.scale.set(s.range,s.range,1);s.cone.material.opacity=s.st==="chase"?.32:.18;s.cone.visible=s.st!=="flee";
+    s.ex.position.set(s.x,10.5,s.z);
   }
 };
 /* ============================================================
@@ -3426,7 +3848,6 @@ function bindHUD(){
   $("prompt").onclick=()=>{if(G.near&&!UI.isOpen())doInteract(G.near)};
   $("btnLeave").onclick=()=>confirmBox("Leave this run?","Your answers so far are saved.","Leave",()=>enterHub());
   $("qbSpeak").onclick=()=>{Snd.init();const st=G.run&&G.run.active;if(st)speak(st.q.q)};
-  $("qbToggle").onclick=()=>{if($("qbanner").classList.contains("min")){qbMin(false);qbAutoMin(7000)}else{clearTimeout(G.qbT);qbMin(true)}};
   $("btnAdv").onclick=()=>{Snd.init();openAdventures()};
   $("daily").onclick=()=>toast("Answer 10 questions today to win coins and a free egg! 🥚","gold");
 }
@@ -3516,29 +3937,22 @@ function openPuzzleFor(st){
 }
 
 /* ---------- answers & rewards ---------- */
-/* on phones / short screens the question banner shrinks to a one-line strip so it never hides the pads */
-function qbMin(on){$("qbanner").classList.toggle("min",!!on);placePrompt()}
-function qbAutoMin(ms){clearTimeout(G.qbT);if(qbSmall())G.qbT=setTimeout(()=>qbMin(true),ms)}
-function qbShow(ms){qbMin(false);qbAutoMin(ms)}
-function qbSmall(){return Input.touch||innerHeight<520}
+/* the banner shows only the question: the answers are on the lettered pads */
 function setActive(st){
   const r=G.run;if(r.active===st)return;r.active=st;
   const b=$("qbanner");
-  if(!st){clearTimeout(G.qbT);qbMin(false);b.hidden=true;placePrompt();return}
-  qbShow(5500);
+  if(!st){b.hidden=true;placePrompt();return}
   b.hidden=false;$("qbNum").textContent="Question "+(st.i+1)+" of "+r.total;$("qbText").textContent=st.q.q;
   const h=$("qbHint");h.className="";h.textContent=st.plan.mode==="mc"?"🦘 Jump onto the pad with the right answer!":"🧩 Walk to the glowing totem and solve the puzzle!";
   $("qbCombo").textContent=r.combo>1?"🔥 Combo x"+r.combo:"";
-  const o=$("qbOpts");o.innerHTML="";
-  if(st.choices)st.choices.forEach((c,k)=>o.append(el("div",{class:"opt","data-k":k},el("b",{style:"background:"+PAD_COLORS[k]+(k===3?";color:#241f45;text-shadow:none":"")},PAD_LETTERS[k]),el("span",{},c.t))));
+  $("qbOpts").innerHTML="";
   if(S.set.voice)speak(st.q.q);
 }
-function markOpt(st,k,cls){const o=$("qbOpts").querySelector('[data-k="'+k+'"]');if(o&&G.run.active===st)o.classList.add(cls)}
 function onPad(pd){
   const st=pd.st;if(st.cleared)return;
   const p=st.pads[pd.k];if(p.state!=="idle")return;
-  if(p.ok){G.W.revealCorrect(st,pd.k);markOpt(st,pd.k,"ok");answerRight(st)}
-  else{G.W.crumble(st,pd.k);markOpt(st,pd.k,"x");answerWrong(st)}
+  if(p.ok){G.W.revealCorrect(st,pd.k);answerRight(st)}
+  else{G.W.crumble(st,pd.k);answerWrong(st)}
 }
 function answerWrong(st,silent){
   const r=G.run,w=writeQ(st.n);
@@ -3547,7 +3961,7 @@ function answerWrong(st,silent){
     w.miss++;if(w.lv>0)w.lv--;r.combo=0;r.misses++;r.missed.push(st.n);
   }
   if(!silent){popText("Not quite!","bad");Snd.sfx("bad")}
-  const h=$("qbHint");h.className="learn";h.textContent="✅ The answer: "+st.q.a;$("qbCombo").textContent="";clearTimeout(G.qbT);if(qbSmall())qbMin(true);
+  const h=$("qbHint");h.className="learn";h.textContent="✅ The answer: "+st.q.a;$("qbCombo").textContent="";
   if(S.set.voice)speak("The answer is: "+st.q.a);
   save();
 }
@@ -3566,7 +3980,7 @@ function answerRight(st){
   toast("+"+coins+" 🪙   +"+xp+" XP","good",1800);
   Snd.sfx("good");G.avatar.cheer=1.2;Part.confetti(P.x,P.y,P.z,first?60:30);
   $("qbCombo").textContent=r.combo>1?"🔥 Combo x"+r.combo:"";
-  {const h=$("qbHint");h.className="learn";h.textContent="✅ "+st.q.a;clearTimeout(G.qbT);if(qbSmall())qbMin(true)}
+  {const h=$("qbHint");h.className="learn";h.textContent="✅ "+st.q.a}
   if(ups)setTimeout(()=>levelUpFx(ups),900);
   dailyCheck();
   checkBadges().forEach((b,i)=>setTimeout(()=>{toast("🏅 Badge unlocked: "+b.name,"gold",3600);Snd.sfx("level")},1300+i*400));
@@ -3650,9 +4064,6 @@ function runLogic(){
   for(const st of r.stages){if(!st.cleared){if(P.z>st.zNear0-12)active=st;break}}
   setActive(active);
   if(active&&P.ground===active.near){
-    /* once the child is standing at the pads, get the banner out of the way */
-    if(!active.nearAt)active.nearAt=performance.now();
-    else if(!active.minDone&&performance.now()-active.nearAt>1500&&!active.missed){active.minDone=true;if(qbSmall())qbMin(true)}
     if(!active.learnShown&&active.plan.learn){active.learnShown=true;openLearn(active)}
     else if(active.totem&&!active.puzzleOpened&&Math.hypot(P.x-active.totem.x,P.z-active.totem.z)<11){active.puzzleOpened=true;openPuzzleFor(active)}
   }
@@ -3662,7 +4073,7 @@ function runLogic(){
 const _q=new THREE.Vector3();
 function updateQuest(){
   const q=$("quest"),Q=G.W&&G.W.quest;
-  if(G.mode!=="hub"||!Q||UI.isOpen()||G.frozen){q.hidden=true;return}
+  if((G.mode!=="hub"&&G.mode!=="adv")||!Q||UI.isOpen()||G.frozen){q.hidden=true;return}
   const dist=Math.hypot(P.x-Q.pos.x,P.z-Q.pos.z);
   if(dist<16){q.hidden=true;return}
   q.hidden=false;
